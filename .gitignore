@@ -6,6 +6,7 @@
 Thumbs.db
 
 n8n_data/
+shared/credentials.json
 
 # Log files
 *.log

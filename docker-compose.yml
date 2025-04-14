@@ -15,4 +15,10 @@ services:
       - N8N_PORT=5678
     volumes:
       - ./n8n_data:/home/node/.n8n
+      - ./shared:/shared
+      - ./init.sh:/init.sh
+    entrypoint: sh /init.sh
+    # command:
+    #   - docker exec -u node -it n8n n8n import:credentials --input=/shared/credentials.json
+    #   - docker exec -u node -it n8n n8n import:workflow --input=/shared/workflows.json
     restart: unless-stopped
