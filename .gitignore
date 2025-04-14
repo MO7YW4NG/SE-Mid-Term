@@ -5,6 +5,8 @@
 .DS_Store
 Thumbs.db
 
+n8n_data/
+
 # Log files
 *.log
 logs/
