@@ -7,6 +7,7 @@ services:
     environment:
       - GENERIC_TIMEZONE=Asia/Taipei
       - N8N_RUNNERS_ENABLED=true
+      - N8N_ENCRYPTION_KEY=${ENCRYPTION_KEY}
       - N8N_BASIC_AUTH_ACTIVE=true
       - N8N_BASIC_AUTH_USER=${ADMIN}
       - N8N_BASIC_AUTH_PASSWORD=${PASSWORD}
@@ -18,7 +19,9 @@ services:
       - ./shared:/shared
       - ./init.sh:/init.sh
     entrypoint: sh /init.sh
-    # command:
-    #   - docker exec -u node -it n8n n8n import:credentials --input=/shared/credentials.json
-    #   - docker exec -u node -it n8n n8n import:workflow --input=/shared/workflows.json
     restart: unless-stopped
+    networks:
+      - n8n_net
+  
+networks:
+  n8n_net:
