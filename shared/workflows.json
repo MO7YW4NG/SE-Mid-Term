@@ -1,5 +1,260 @@
 [
   {
+    "createdAt": "2025-04-18T20:30:29.890Z",
+    "updatedAt": "2025-04-20T13:33:59.000Z",
+    "id": "YxHB45QpONoAudHe",
+    "name": "Wedding Invites",
+    "active": false,
+    "nodes": [
+        {
+            "parameters": {
+                "rule": {
+                    "interval": [
+                        {
+                            "triggerAtHour": 11
+                        }
+                    ]
+                }
+            },
+            "type": "n8n-nodes-base.scheduleTrigger",
+            "typeVersion": 1.2,
+            "position": [
+                -460,
+                -320
+            ],
+            "id": "796a1b29-9242-43d6-a19c-2599302e932d",
+            "name": "Schedule Trigger"
+        },
+        {
+            "parameters": {
+                "fileSelector": "/shared/couple.csv",
+                "options": {}
+            },
+            "type": "n8n-nodes-base.readWriteFile",
+            "typeVersion": 1,
+            "position": [
+                -280,
+                -320
+            ],
+            "id": "409fcc8b-ab8e-4d2e-b3f7-6cb1c349cedf",
+            "name": "Read/Write Files from Disk"
+        },
+        {
+            "parameters": {
+                "options": {}
+            },
+            "type": "n8n-nodes-base.extractFromFile",
+            "typeVersion": 1,
+            "position": [
+                -120,
+                -320
+            ],
+            "id": "8aceb53b-28ec-4836-bb4b-1bb9d0fa5f9a",
+            "name": "Extract from File"
+        },
+        {
+            "parameters": {
+                "fileSelector": "/shared/guests.csv",
+                "options": {}
+            },
+            "type": "n8n-nodes-base.readWriteFile",
+            "typeVersion": 1,
+            "position": [
+                -120,
+                -120
+            ],
+            "id": "e5dca9e0-d696-4f3b-bbf2-0fc2d48eb5f4",
+            "name": "Read/Write Files from Disk1"
+        },
+        {
+            "parameters": {
+                "options": {}
+            },
+            "type": "n8n-nodes-base.extractFromFile",
+            "typeVersion": 1,
+            "position": [
+                40,
+                -120
+            ],
+            "id": "520e0fe0-6abc-4ca4-9b4e-5d3ff18c6f36",
+            "name": "Extract from File1"
+        },
+        {
+            "parameters": {
+                "mode": "combine",
+                "combineBy": "combineAll",
+                "options": {}
+            },
+            "type": "n8n-nodes-base.merge",
+            "typeVersion": 3.1,
+            "position": [
+                160,
+                -300
+            ],
+            "id": "a73ed20b-1550-4d6d-b22c-0269ac5eb94c",
+            "name": "Merge"
+        },
+        {
+            "parameters": {
+                "method": "POST",
+                "url": "https://openrouter.ai/api/v1/chat/completions",
+                "authentication": "predefinedCredentialType",
+                "nodeCredentialType": "openRouterApi",
+                "sendHeaders": true,
+                "headerParameters": {
+                    "parameters": [
+                        {
+                            "name": "Content-Type",
+                            "value": "application/json"
+                        }
+                    ]
+                },
+                "sendBody": true,
+                "specifyBody": "=json",
+                "bodyParameters": {
+                    "parameters": [
+                        {}
+                    ]
+                },
+                "jsonBody": "{\n  \"model\": \"google/gemini-2.5-pro-exp-03-25:free\",\n  \"messages\": [\n    {\n      \"role\": \"system\",\n      \"content\": \"你是婚禮邀請函產生專家。\"\n    },\n    {\n      \"role\": \"user\",\n      \"content\": \"請根據以下資料，為  生成一封溫馨客製化的邀請函：\n新人：＆張志明\n關係：大學同學\n小故事：一起去日本背包旅行\"\n    }\n  ],\n  \"temperature\": 0.8\n}\n",
+                "options": {}
+            },
+            "type": "n8n-nodes-base.httpRequest",
+            "typeVersion": 4.2,
+            "position": [
+                300,
+                -300
+            ],
+            "id": "40c20314-65b2-495b-9f4e-1b88de9228b3",
+            "name": "HTTP Request",
+            "credentials": {
+                "openRouterApi": {
+                    "id": "GWbBdrAWpARJgY9C",
+                    "name": "OpenRouter account"
+                }
+            }
+        },
+        {
+            "parameters": {
+                "sendTo": "={{$node[\"Merge\"].json.email}} ",
+                "subject": "=【{{$node[\"Merge\"].json.bride_name}}＆{{$node[\"Merge\"].json.groom_name}}】專屬家宴邀請函 ",
+                "message": "={{$node[\"HTTP Request\"].json.message.content}} ",
+                "options": {}
+            },
+            "type": "n8n-nodes-base.gmail",
+            "typeVersion": 2.1,
+            "position": [
+                520,
+                -300
+            ],
+            "id": "1612384c-cebe-4236-a933-0851256b358b",
+            "name": "Gmail",
+            "webhookId": "47b6df8e-2422-477b-941e-16ec370ee779",
+            "credentials": {
+                "gmailOAuth2": {
+                    "id": "um1EOcjWLEB39Bo3",
+                    "name": "Gmail account"
+                }
+            }
+        }
+    ],
+    "connections": {
+        "Schedule Trigger": {
+            "main": [
+                [
+                    {
+                        "node": "Read/Write Files from Disk",
+                        "type": "main",
+                        "index": 0
+                    }
+                ]
+            ]
+        },
+        "Read/Write Files from Disk": {
+            "main": [
+                [
+                    {
+                        "node": "Extract from File",
+                        "type": "main",
+                        "index": 0
+                    }
+                ]
+            ]
+        },
+        "Extract from File": {
+            "main": [
+                [
+                    {
+                        "node": "Read/Write Files from Disk1",
+                        "type": "main",
+                        "index": 0
+                    },
+                    {
+                        "node": "Merge",
+                        "type": "main",
+                        "index": 0
+                    }
+                ]
+            ]
+        },
+        "Read/Write Files from Disk1": {
+            "main": [
+                [
+                    {
+                        "node": "Extract from File1",
+                        "type": "main",
+                        "index": 0
+                    }
+                ]
+            ]
+        },
+        "Extract from File1": {
+            "main": [
+                [
+                    {
+                        "node": "Merge",
+                        "type": "main",
+                        "index": 1
+                    }
+                ]
+            ]
+        },
+        "Merge": {
+            "main": [
+                [
+                    {
+                        "node": "HTTP Request",
+                        "type": "main",
+                        "index": 0
+                    }
+                ]
+            ]
+        },
+        "HTTP Request": {
+            "main": [
+                [
+                    {
+                        "node": "Gmail",
+                        "type": "main",
+                        "index": 0
+                    }
+                ]
+            ]
+        }
+    },
+    "settings": {
+        "executionOrder": "v1"
+    },
+    "staticData": null,
+    "meta": {
+        "templateCredsSetupCompleted": true
+    },
+    "pinData": {},
+    "versionId": "23acf0bd-ca9b-4fd9-962f-66734ac0bc67",
+    "triggerCount": 0,
+    "tags": []
+  },
+  {
     "createdAt": "2025-04-14T22:11:56.363Z",
     "updatedAt": "2025-04-20T11:42:15.000Z",
     "id": "R1ivEU2tjH6lA6e4",
