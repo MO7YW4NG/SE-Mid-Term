@@ -1,660 +1,407 @@
-[{"createdAt":"2025-04-20T15:31:37.604Z","updatedAt":"2025-04-20T15:45:07.000Z","id":"IgHWfNufCgjtHl2N","name":"Demo: My first AI Agent in n8n","active":false,"nodes":[{"parameters":{"options":{}},"id":"5b410409-5b0b-47bd-b413-5b9b1000a063","name":"When chat message received","type":"@n8n/n8n-nodes-langchain.chatTrigger","typeVersion":1.1,"position":[360,20],"webhookId":"a889d2ae-2159-402f-b326-5f61e90f602e"},{"parameters":{"options":{"systemMessage":"=You're a helpful assistant that helps the user answer questions about their calendar.\n\nToday is {{ $now.format('cccc') }} the {{ $now.format('yyyy-MM-dd HH:mm') }}."}},"id":"29963449-1dc1-487d-96f2-7ff0a5c3cd97","name":"AI Agent","type":"@n8n/n8n-nodes-langchain.agent","typeVersion":1.7,"position":[560,20]},{"parameters":{},"id":"75481370-bade-4d90-a878-3a3b0201edcc","name":"Memory","type":"@n8n/n8n-nodes-langchain.memoryBufferWindow","typeVersion":1.3,"position":[660,200]},{"parameters":{"model":"google/gemini-2.5-pro-exp-03-25:free","options":{}},"type":"@n8n/n8n-nodes-langchain.lmChatOpenRouter","typeVersion":1,"position":[540,200],"id":"a3236069-1131-4070-a142-f0ab49fc69a0","name":"OpenRouter Chat Model","credentials":{"openRouterApi":{"id":"GWbBdrAWpARJgY9C","name":"OpenRouter account"}}}],"connections":{"When chat message received":{"main":[[{"node":"AI Agent","type":"main","index":0}]]},"Memory":{"ai_memory":[[{"node":"AI Agent","type":"ai_memory","index":0}]]},"OpenRouter Chat Model":{"ai_languageModel":[[{"node":"AI Agent","type":"ai_languageModel","index":0}]]}},"settings":{"executionOrder":"v1"},"staticData":null,"meta":{"templateId":"PT1i+zU92Ii5O2XCObkhfHJR5h9rNJTpiCIkYJk9jHU=","templateCredsSetupCompleted":true},"pinData":{},"versionId":"2ec6a658-862a-40b2-abd1-f8e11ee940d4","triggerCount":0,"tags":[]},{"createdAt":"2025-04-14T22:11:56.363Z","updatedAt":"2025-04-14T22:13:53.000Z","id":"R1ivEU2tjH6lA6e4","name":"Test","active":false,"nodes":[{"parameters":{"options":{"allowFileUploads":true}},"type":"@n8n/n8n-nodes-langchain.chatTrigger","typeVersion":1.1,"position":[0,0],"id":"79334ff1-e5d4-407f-8239-97538d7be507","name":"When chat message received","webhookId":"2276b343-32e3-43e8-9c21-b3abe17e9185"},{"parameters":{"options":{}},"type":"@n8n/n8n-nodes-langchain.agent","typeVersion":1.8,"position":[220,0],"id":"b6d75eef-bb48-476d-ad95-5ccdc8fdcd31","name":"AI Agent"},{"parameters":{"model":"google/gemini-2.5-pro-exp-03-25:free","options":{}},"type":"@n8n/n8n-nodes-langchain.lmChatOpenRouter","typeVersion":1,"position":[180,200],"id":"f8e33c3f-589d-46fc-b8fb-7395333558a9","name":"OpenRouter Chat Model","credentials":{"openRouterApi":{"id":"GWbBdrAWpARJgY9C","name":"OpenRouter account"}}},{"parameters":{},"type":"@n8n/n8n-nodes-langchain.memoryBufferWindow","typeVersion":1.3,"position":[320,220],"id":"d85f9d53-64a3-4feb-aad3-3ac597cac0b8","name":"Simple Memory"}],"connections":{"When chat message received":{"main":[[{"node":"AI Agent","type":"main","index":0}]]},"OpenRouter Chat Model":{"ai_languageModel":[[{"node":"AI Agent","type":"ai_languageModel","index":0}]]},"Simple Memory":{"ai_memory":[[{"node":"AI Agent","type":"ai_memory","index":0}]]}},"settings":{"executionOrder":"v1"},"staticData":null,"meta":{"templateCredsSetupCompleted":true},"pinData":{},"versionId":"55b73e1a-da30-40af-beaa-73122983d6dc","triggerCount":0,"tags":[]},{"createdAt":"2025-04-18T20:30:29.890Z","updatedAt":"2025-04-21T12:20:17.000Z","id":"YxHB45QpONoAudHe","name":"Wedding Invites","active":false,"nodes":[{"parameters":{"rule":{"interval":[{"triggerAtHour":11}]}},"type":"n8n-nodes-base.scheduleTrigger","typeVersion":1.2,"position":[-460,-320],"id":"796a1b29-9242-43d6-a19c-2599302e932d","name":"Schedule Trigger"},{"parameters":{"fileSelector":"/shared/couple.csv","options":{}},"type":"n8n-nodes-base.readWriteFile","typeVersion":1,"position":[-280,-320],"id":"409fcc8b-ab8e-4d2e-b3f7-6cb1c349cedf","name":"Read/Write Files from Disk"},{"parameters":{"options":{}},"type":"n8n-nodes-base.extractFromFile","typeVersion":1,"position":[-120,-320],"id":"8aceb53b-28ec-4836-bb4b-1bb9d0fa5f9a","name":"Extract from File"},{"parameters":{"fileSelector":"/shared/guests.csv","options":{}},"type":"n8n-nodes-base.readWriteFile","typeVersion":1,"position":[-120,-120],"id":"e5dca9e0-d696-4f3b-bbf2-0fc2d48eb5f4","name":"Read/Write Files from Disk1"},{"parameters":{"options":{}},"type":"n8n-nodes-base.extractFromFile","typeVersion":1,"position":[40,-120],"id":"520e0fe0-6abc-4ca4-9b4e-5d3ff18c6f36","name":"Extract from File1"},{"parameters":{"mode":"combine","combineBy":"combineAll","options":{}},"type":"n8n-nodes-base.merge","typeVersion":3.1,"position":[180,-300],"id":"a73ed20b-1550-4d6d-b22c-0269ac5eb94c","name":"Merge"},{"parameters":{"method":"POST","url":"https://openrouter.ai/api/v1/chat/completions","authentication":"predefinedCredentialType","nodeCredentialType":"openRouterApi","sendHeaders":true,"headerParameters":{"parameters":[{"name":"Content-Type","value":"application/json"}]},"sendBody":true,"specifyBody":"=json","bodyParameters":{"parameters":[{}]},"jsonBody":"{\n  \"model\": \"google/gemini-2.5-pro-exp-03-25:free\",\n  \"messages\": [\n    {\n      \"role\": \"system\",\n      \"content\": \"你是婚禮邀請函產生專家。\"\n    },\n    {\n      \"role\": \"user\",\n      \"content\": \"請根據以下資料生成一封溫馨、具口語風格的婚禮邀請函：\\n\\n新人：{{$node[\\\"Merge\\\"].json.bride_name}} & {{$node[\\\"Merge\\\"].json.groom_name}}\\n收件人：{{$node[\\\"Merge\\\"].json.guest_name}}\\n關係：{{$node[\\\"Merge\\\"].json.relation}}\\n小故事：{{$node[\\\"Merge\\\"].json.story}}\\n婚禮日期：{{$node[\\\"Merge\\\"].json.wedding_date}}\\n星期幾：{{$node[\\\"Merge\\\"].json.week_day}}\\n時間：{{$node[\\\"Merge\\\"].json.time}}\\n地點名稱：{{$node[\\\"Merge\\\"].json.venue_name}}\\n地點地址：{{$node[\\\"Merge\\\"].json.venue_address}}\\nRSVP 回覆方式：{{$node[\\\"Merge\\\"].json.rsvp}}\\nRSVP 截止日：{{$node[\\\"Merge\\\"].json.rsvp_deadline}}\"\n    }\n  ],\n  \"temperature\": 0.8\n}\n","options":{}},"type":"n8n-nodes-base.httpRequest","typeVersion":4.2,"position":[520,-300],"id":"40c20314-65b2-495b-9f4e-1b88de9228b3","name":"HTTP Request","credentials":{"openRouterApi":{"id":"GWbBdrAWpARJgY9C","name":"OpenRouter account"}}},{"parameters":{"sendTo":"={{$node[\"Merge\"].json.email}} ","subject":"=【{{$node[\"Merge\"].json.bride_name}}＆{{$node[\"Merge\"].json.groom_name}}】專屬家宴邀請函 ","message":"=親愛的 {{ $('Merge').item.json.name }}：\n\n嘿！我們要結婚了！\n是的，就是我們，{{$node[\"Merge\"].json.bride_name}} 和 {{$node[\"Merge\"].json.groom_name}}！\n想到能與你分享這個超開心的消息，就覺得好興奮！\n\n還記得嗎？ {{ $('Merge').item.json.favorite_memory }} \n我們一路走來的點點滴滴，因為有像你一樣的 {{ $('Merge').item.json.relationship }}，在我們身邊支持與陪伴，讓這段旅程更加溫暖和有意義。\n\n現在，我們決定攜手邁向人生的下一個篇章，真的、真的非常希望你能來參加我們的婚禮，和我們一起分享這份喜悅，見證我們最重要的時刻！\n\n💌【婚禮資訊】  \n📅 日期：{{$node[\"Merge\"].json.wedding_date}}（星期{{$node[\"Merge\"].json.week_day}}）  \n🕠 時間：{{$node[\"Merge\"].json.time}}  \n🏛 地點：{{$node[\"Merge\"].json.venue_name}}  \n📍 地址：{{$node[\"Merge\"].json.venue_address}}\n\n🔔【敬請回覆】  \n為了方便我們統計人數和安排，請你在 {{$node[\"Merge\"].json.rsvp_deadline}} 前，透過 {{$node[\"Merge\"].json.rsvp}} 告訴我們你是否能來參加，讓我們知道可以期待看到你喔！\n\n你的祝福與蒞臨，將是給我們最棒的結婚禮物。  \n期待在婚禮上見到你，聊聊近況，抱一個！\n\n溫馨的祝福，  \n{{$node[\"Merge\"].json.bride_name}} & {{$node[\"Merge\"].json.groom_name}} 敬邀\n","options":{}},"type":"n8n-nodes-base.gmail","typeVersion":2.1,"position":[740,-300],"id":"1612384c-cebe-4236-a933-0851256b358b","name":"Gmail","webhookId":"47b6df8e-2422-477b-941e-16ec370ee779","credentials":{"gmailOAuth2":{"id":"3kASMhO8mJHcZQZz","name":"Gmail account"}}},{"parameters":{"mode":"raw","jsonOutput":"{\n  \"bride_name\": \"小美\",\n  \"groom_name\": \"張志明\",\n  \"guest_name\": \"王小明\",\n  \"relation\": \"大學同學\",\n  \"story\": \"一起去日本背包旅行時，迷路卻意外吃到超好吃的拉麵\",\n  \"wedding_date\": \"2025-06-15\",\n  \"week_day\": \"日\",\n  \"time\": \"下午 5:30\",\n  \"venue_name\": \"晶華酒店 3 樓宴會廳\",\n  \"venue_address\": \"台北市中山區中山北路二段39巷3號\",\n  \"rsvp\": \"請回覆 0912-345-678 或 email@example.com\",\n  \"rsvp_deadline\": \"2025-05-31\"\n}\n","options":{}},"type":"n8n-nodes-base.set","typeVersion":3.4,"position":[340,-300],"id":"e39be8a1-80b8-4851-9a5f-d3d19550b863","name":"Edit Fields1"}],"connections":{"Schedule Trigger":{"main":[[{"node":"Read/Write Files from Disk","type":"main","index":0}]]},"Read/Write Files from Disk":{"main":[[{"node":"Extract from File","type":"main","index":0}]]},"Extract from File":{"main":[[{"node":"Read/Write Files from Disk1","type":"main","index":0},{"node":"Merge","type":"main","index":0}]]},"Read/Write Files from Disk1":{"main":[[{"node":"Extract from File1","type":"main","index":0}]]},"Extract from File1":{"main":[[{"node":"Merge","type":"main","index":1}]]},"Merge":{"main":[[{"node":"Edit Fields1","type":"main","index":0}]]},"HTTP Request":{"main":[[{"node":"Gmail","type":"main","index":0}]]},"Edit Fields1":{"main":[[{"node":"HTTP Request","type":"main","index":0}]]}},"settings":{"executionOrder":"v1"},"staticData":null,"meta":{"templateCredsSetupCompleted":true},"pinData":{},"versionId":"5818ca90-a0db-48d4-8d83-62f7c2415bcc","triggerCount":0,"tags":[]}]
-
+<<<<<<< HEAD
+[{"createdAt":"2025-04-14T22:11:56.363Z","updatedAt":"2025-04-14T22:13:53.000Z","id":"R1ivEU2tjH6lA6e4","name":"Test","active":false,"nodes":[{"parameters":{"options":{"allowFileUploads":true}},"type":"@n8n/n8n-nodes-langchain.chatTrigger","typeVersion":1.1,"position":[0,0],"id":"79334ff1-e5d4-407f-8239-97538d7be507","name":"When chat message received","webhookId":"2276b343-32e3-43e8-9c21-b3abe17e9185"},{"parameters":{"options":{}},"type":"@n8n/n8n-nodes-langchain.agent","typeVersion":1.8,"position":[220,0],"id":"b6d75eef-bb48-476d-ad95-5ccdc8fdcd31","name":"AI Agent"},{"parameters":{"model":"google/gemini-2.5-pro-exp-03-25:free","options":{}},"type":"@n8n/n8n-nodes-langchain.lmChatOpenRouter","typeVersion":1,"position":[180,200],"id":"f8e33c3f-589d-46fc-b8fb-7395333558a9","name":"OpenRouter Chat Model","credentials":{"openRouterApi":{"id":"GWbBdrAWpARJgY9C","name":"OpenRouter account"}}},{"parameters":{},"type":"@n8n/n8n-nodes-langchain.memoryBufferWindow","typeVersion":1.3,"position":[320,220],"id":"d85f9d53-64a3-4feb-aad3-3ac597cac0b8","name":"Simple Memory"}],"connections":{"When chat message received":{"main":[[{"node":"AI Agent","type":"main","index":0}]]},"OpenRouter Chat Model":{"ai_languageModel":[[{"node":"AI Agent","type":"ai_languageModel","index":0}]]},"Simple Memory":{"ai_memory":[[{"node":"AI Agent","type":"ai_memory","index":0}]]}},"settings":{"executionOrder":"v1"},"staticData":null,"meta":{"templateCredsSetupCompleted":true},"pinData":{},"versionId":"55b73e1a-da30-40af-beaa-73122983d6dc","triggerCount":0,"tags":[]},{"createdAt":"2025-04-18T20:30:29.890Z","updatedAt":"2025-04-20T13:33:59.000Z","id":"YxHB45QpONoAudHe","name":"Wedding Invites","active":false,"nodes":[{"parameters":{"rule":{"interval":[{"triggerAtHour":11}]}},"type":"n8n-nodes-base.scheduleTrigger","typeVersion":1.2,"position":[-460,-320],"id":"796a1b29-9242-43d6-a19c-2599302e932d","name":"Schedule Trigger"},{"parameters":{"fileSelector":"/shared/couple.csv","options":{}},"type":"n8n-nodes-base.readWriteFile","typeVersion":1,"position":[-280,-320],"id":"409fcc8b-ab8e-4d2e-b3f7-6cb1c349cedf","name":"Read/Write Files from Disk"},{"parameters":{"options":{}},"type":"n8n-nodes-base.extractFromFile","typeVersion":1,"position":[-120,-320],"id":"8aceb53b-28ec-4836-bb4b-1bb9d0fa5f9a","name":"Extract from File"},{"parameters":{"fileSelector":"/shared/guests.csv","options":{}},"type":"n8n-nodes-base.readWriteFile","typeVersion":1,"position":[-120,-120],"id":"e5dca9e0-d696-4f3b-bbf2-0fc2d48eb5f4","name":"Read/Write Files from Disk1"},{"parameters":{"options":{}},"type":"n8n-nodes-base.extractFromFile","typeVersion":1,"position":[40,-120],"id":"520e0fe0-6abc-4ca4-9b4e-5d3ff18c6f36","name":"Extract from File1"},{"parameters":{"mode":"combine","combineBy":"combineAll","options":{}},"type":"n8n-nodes-base.merge","typeVersion":3.1,"position":[160,-300],"id":"a73ed20b-1550-4d6d-b22c-0269ac5eb94c","name":"Merge"},{"parameters":{"method":"POST","url":"https://openrouter.ai/api/v1/chat/completions","authentication":"predefinedCredentialType","nodeCredentialType":"openRouterApi","sendHeaders":true,"headerParameters":{"parameters":[{"name":"Content-Type","value":"application/json"}]},"sendBody":true,"specifyBody":"=json","bodyParameters":{"parameters":[{}]},"jsonBody":"{\n  \"model\": \"openai/gpt-4o-mini\",\n  \"messages\": [\n    {\n      \"role\": \"system\",\n      \"content\": \"你是婚禮邀請函產生專家。\"\n    },\n    {\n      \"role\": \"user\",\n      \"content\": \"請根據以下資料，為  生成一封溫馨客製化的邀請函：\\n新人：＆張志明\\n關係：大學同學\\n小故事：一起去日本背包旅行\"\n    }\n  ],\n  \"temperature\": 0.8\n}\n","options":{}},"type":"n8n-nodes-base.httpRequest","typeVersion":4.2,"position":[300,-300],"id":"40c20314-65b2-495b-9f4e-1b88de9228b3","name":"HTTP Request","credentials":{"openRouterApi":{"id":"GWbBdrAWpARJgY9C","name":"OpenRouter account"}}},{"parameters":{"sendTo":"={{$node[\"Merge\"].json.email}} ","subject":"=【{{$node[\"Merge\"].json.bride_name}}＆{{$node[\"Merge\"].json.groom_name}}】專屬家宴邀請函 ","message":"={{$node[\"HTTP Request\"].json.message.content}} ","options":{}},"type":"n8n-nodes-base.gmail","typeVersion":2.1,"position":[520,-300],"id":"1612384c-cebe-4236-a933-0851256b358b","name":"Gmail","webhookId":"47b6df8e-2422-477b-941e-16ec370ee779","credentials":{"gmailOAuth2":{"id":"um1EOcjWLEB39Bo3","name":"Gmail account"}}}],"connections":{"Schedule Trigger":{"main":[[{"node":"Read/Write Files from Disk","type":"main","index":0}]]},"Read/Write Files from Disk":{"main":[[{"node":"Extract from File","type":"main","index":0}]]},"Extract from File":{"main":[[{"node":"Read/Write Files from Disk1","type":"main","index":0},{"node":"Merge","type":"main","index":0}]]},"Read/Write Files from Disk1":{"main":[[{"node":"Extract from File1","type":"main","index":0}]]},"Extract from File1":{"main":[[{"node":"Merge","type":"main","index":1}]]},"Merge":{"main":[[{"node":"HTTP Request","type":"main","index":0}]]},"HTTP Request":{"main":[[{"node":"Gmail","type":"main","index":0}]]}},"settings":{"executionOrder":"v1"},"staticData":null,"meta":{"templateCredsSetupCompleted":true},"pinData":{},"versionId":"23acf0bd-ca9b-4fd9-962f-66734ac0bc67","triggerCount":0,"tags":[]}]
+=======
 [
-    {
-      "createdAt": "2025-04-18T20:30:29.890Z",
-      "updatedAt": "2025-04-20T13:33:59.000Z",
-      "id": "YxHB45QpONoAudHe",
-      "name": "Wedding Invites",
-      "active": false,
-      "nodes": [
-          {
-              "parameters": {
-                  "rule": {
-                      "interval": [
-                          {
-                              "triggerAtHour": 11
-                          }
-                      ]
-                  }
-              },
-              "type": "n8n-nodes-base.scheduleTrigger",
-              "typeVersion": 1.2,
-              "position": [
-                  -460,
-                  -320
-              ],
-              "id": "796a1b29-9242-43d6-a19c-2599302e932d",
-              "name": "Schedule Trigger"
-          },
-          {
-              "parameters": {
-                  "fileSelector": "/shared/couple.csv",
-                  "options": {}
-              },
-              "type": "n8n-nodes-base.readWriteFile",
-              "typeVersion": 1,
-              "position": [
-                  -280,
-                  -320
-              ],
-              "id": "409fcc8b-ab8e-4d2e-b3f7-6cb1c349cedf",
-              "name": "Read/Write Files from Disk"
-          },
-          {
-              "parameters": {
-                  "options": {}
-              },
-              "type": "n8n-nodes-base.extractFromFile",
-              "typeVersion": 1,
-              "position": [
-                  -120,
-                  -320
-              ],
-              "id": "8aceb53b-28ec-4836-bb4b-1bb9d0fa5f9a",
-              "name": "Extract from File"
-          },
-          {
-              "parameters": {
-                  "fileSelector": "/shared/guests.csv",
-                  "options": {}
-              },
-              "type": "n8n-nodes-base.readWriteFile",
-              "typeVersion": 1,
-              "position": [
-                  -120,
-                  -120
-              ],
-              "id": "e5dca9e0-d696-4f3b-bbf2-0fc2d48eb5f4",
-              "name": "Read/Write Files from Disk1"
-          },
-          {
-              "parameters": {
-                  "options": {}
-              },
-              "type": "n8n-nodes-base.extractFromFile",
-              "typeVersion": 1,
-              "position": [
-                  40,
-                  -120
-              ],
-              "id": "520e0fe0-6abc-4ca4-9b4e-5d3ff18c6f36",
-              "name": "Extract from File1"
-          },
-          {
-              "parameters": {
-                  "mode": "combine",
-                  "combineBy": "combineAll",
-                  "options": {}
-              },
-              "type": "n8n-nodes-base.merge",
-              "typeVersion": 3.1,
-              "position": [
-                  160,
-                  -300
-              ],
-              "id": "a73ed20b-1550-4d6d-b22c-0269ac5eb94c",
-              "name": "Merge"
-          },
-          {
-              "parameters": {
-                  "method": "POST",
-                  "url": "https://openrouter.ai/api/v1/chat/completions",
-                  "authentication": "predefinedCredentialType",
-                  "nodeCredentialType": "openRouterApi",
-                  "sendHeaders": true,
-                  "headerParameters": {
-                      "parameters": [
-                          {
-                              "name": "Content-Type",
-                              "value": "application/json"
-                          }
-                      ]
-                  },
-                  "sendBody": true,
-                  "specifyBody": "=json",
-                  "bodyParameters": {
-                      "parameters": [
-                          {}
-                      ]
-                  },
-                  "jsonBody": "{\n  \"model\": \"google/gemini-2.5-pro-exp-03-25:free\",\n  \"messages\": [\n    {\n      \"role\": \"system\",\n      \"content\": \"你是婚禮邀請函產生專家。\"\n    },\n    {\n      \"role\": \"user\",\n      \"content\": \"請根據以下資料，為  生成一封溫馨客製化的邀請函：\n新人：＆張志明\n關係：大學同學\n小故事：一起去日本背包旅行\"\n    }\n  ],\n  \"temperature\": 0.8\n}\n",
-                  "options": {}
-              },
-              "type": "n8n-nodes-base.httpRequest",
-              "typeVersion": 4.2,
-              "position": [
-                  300,
-                  -300
-              ],
-              "id": "40c20314-65b2-495b-9f4e-1b88de9228b3",
-              "name": "HTTP Request",
-              "credentials": {
-                  "openRouterApi": {
-                      "id": "GWbBdrAWpARJgY9C",
-                      "name": "OpenRouter account"
-                  }
-              }
-          },
-          {
-              "parameters": {
-                  "sendTo": "={{$node[\"Merge\"].json.email}} ",
-                  "subject": "=【{{$node[\"Merge\"].json.bride_name}}＆{{$node[\"Merge\"].json.groom_name}}】專屬家宴邀請函 ",
-                  "message": "={{$node[\"HTTP Request\"].json.message.content}} ",
-                  "options": {}
-              },
-              "type": "n8n-nodes-base.gmail",
-              "typeVersion": 2.1,
-              "position": [
-                  520,
-                  -300
-              ],
-              "id": "1612384c-cebe-4236-a933-0851256b358b",
-              "name": "Gmail",
-              "webhookId": "47b6df8e-2422-477b-941e-16ec370ee779",
-              "credentials": {
-                  "gmailOAuth2": {
-                      "id": "um1EOcjWLEB39Bo3",
-                      "name": "Gmail account"
-                  }
-              }
+  {
+    "createdAt": "2025-04-14T22:11:56.363Z",
+    "updatedAt": "2025-04-20T11:42:15.000Z",
+    "id": "R1ivEU2tjH6lA6e4",
+    "name": "Test",
+    "active": false,
+    "nodes": [
+      {
+        "parameters": {
+          "options": {
+            "allowFileUploads": true
           }
-      ],
-      "connections": {
-          "Schedule Trigger": {
-              "main": [
-                  [
-                      {
-                          "node": "Read/Write Files from Disk",
-                          "type": "main",
-                          "index": 0
-                      }
-                  ]
-              ]
-          },
-          "Read/Write Files from Disk": {
-              "main": [
-                  [
-                      {
-                          "node": "Extract from File",
-                          "type": "main",
-                          "index": 0
-                      }
-                  ]
-              ]
-          },
-          "Extract from File": {
-              "main": [
-                  [
-                      {
-                          "node": "Read/Write Files from Disk1",
-                          "type": "main",
-                          "index": 0
-                      },
-                      {
-                          "node": "Merge",
-                          "type": "main",
-                          "index": 0
-                      }
-                  ]
-              ]
-          },
-          "Read/Write Files from Disk1": {
-              "main": [
-                  [
-                      {
-                          "node": "Extract from File1",
-                          "type": "main",
-                          "index": 0
-                      }
-                  ]
-              ]
-          },
-          "Extract from File1": {
-              "main": [
-                  [
-                      {
-                          "node": "Merge",
-                          "type": "main",
-                          "index": 1
-                      }
-                  ]
-              ]
-          },
-          "Merge": {
-              "main": [
-                  [
-                      {
-                          "node": "HTTP Request",
-                          "type": "main",
-                          "index": 0
-                      }
-                  ]
-              ]
-          },
-          "HTTP Request": {
-              "main": [
-                  [
-                      {
-                          "node": "Gmail",
-                          "type": "main",
-                          "index": 0
-                      }
-                  ]
-              ]
+        },
+        "type": "@n8n/n8n-nodes-langchain.chatTrigger",
+        "typeVersion": 1.1,
+        "position": [
+          -100,
+          380
+        ],
+        "id": "79334ff1-e5d4-407f-8239-97538d7be507",
+        "name": "When chat message received",
+        "webhookId": "2276b343-32e3-43e8-9c21-b3abe17e9185"
+      },
+      {
+        "parameters": {
+          "options": {}
+        },
+        "type": "@n8n/n8n-nodes-langchain.agent",
+        "typeVersion": 1.8,
+        "position": [
+          240,
+          20
+        ],
+        "id": "b6d75eef-bb48-476d-ad95-5ccdc8fdcd31",
+        "name": "AI Agent"
+      },
+      {
+        "parameters": {
+          "model": "google/gemini-2.5-pro-exp-03-25:free",
+          "options": {}
+        },
+        "type": "@n8n/n8n-nodes-langchain.lmChatOpenRouter",
+        "typeVersion": 1,
+        "position": [
+          80,
+          220
+        ],
+        "id": "f8e33c3f-589d-46fc-b8fb-7395333558a9",
+        "name": "OpenRouter Chat Model",
+        "credentials": {
+          "openRouterApi": {
+            "id": "GWbBdrAWpARJgY9C",
+            "name": "OpenRouter account"
           }
+        }
       },
-      "settings": {
-          "executionOrder": "v1"
+      {
+        "parameters": {},
+        "type": "@n8n/n8n-nodes-langchain.memoryBufferWindow",
+        "typeVersion": 1.3,
+        "position": [
+          320,
+          220
+        ],
+        "id": "d85f9d53-64a3-4feb-aad3-3ac597cac0b8",
+        "name": "Simple Memory"
       },
-      "staticData": null,
-      "meta": {
-          "templateCredsSetupCompleted": true
+      {
+        "parameters": {
+          "resource": "message",
+          "guildId": {
+            "__rl": true,
+            "value": "1342146307019509781",
+            "mode": "list",
+            "cachedResultName": "軟體專案管理",
+            "cachedResultUrl": "https://discord.com/channels/1342146307019509781"
+          },
+          "channelId": {
+            "__rl": true,
+            "value": "1361739702717124918",
+            "mode": "list",
+            "cachedResultName": "測試",
+            "cachedResultUrl": "https://discord.com/channels/1342146307019509781/1361739702717124918"
+          },
+          "content": "=",
+          "options": {},
+          "files": {
+            "values": [
+              {}
+            ]
+          }
+        },
+        "type": "n8n-nodes-base.discord",
+        "typeVersion": 2,
+        "position": [
+          900,
+          380
+        ],
+        "id": "578e8e82-3b6b-48e9-bbe3-ea8dbbc8bae0",
+        "name": "Discord2",
+        "webhookId": "a74f4df1-3dd8-4d50-9a41-8ed5fdda4535",
+        "retryOnFail": true,
+        "maxTries": 2,
+        "credentials": {
+          "discordBotApi": {
+            "id": "JC8qRNhiT4LJUYFz",
+            "name": "Discord Bot account"
+          }
+        }
       },
-      "pinData": {},
-      "versionId": "23acf0bd-ca9b-4fd9-962f-66734ac0bc67",
-      "triggerCount": 0,
-      "tags": []
+      {
+        "parameters": {
+          "operation": "toBinary",
+          "sourceProperty": "image[0]",
+          "options": {
+            "mimeType": "=image/png"
+          }
+        },
+        "type": "n8n-nodes-base.convertToFile",
+        "typeVersion": 1.1,
+        "position": [
+          780,
+          380
+        ],
+        "id": "539d5833-0435-4025-91c4-9e5467b7cde5",
+        "name": "Convert to File"
+      },
+      {
+        "parameters": {
+          "assignments": {
+            "assignments": [
+              {
+                "id": "74f3e380-7d9f-4e6c-a464-1b28230fa8da",
+                "name": "image",
+                "value": "={{ $json.candidates\n   .map(c => c.content.parts?.[0]?.inlineData?.data) }}",
+                "type": "array"
+              }
+            ]
+          },
+          "options": {
+            "ignoreConversionErrors": true
+          }
+        },
+        "type": "n8n-nodes-base.set",
+        "typeVersion": 3.4,
+        "position": [
+          660,
+          380
+        ],
+        "id": "225c76c5-1f3f-4eb9-b0bf-4b0da6134b58",
+        "name": "Edit Fields"
+      },
+      {
+        "parameters": {
+          "conditions": {
+            "options": {
+              "caseSensitive": true,
+              "leftValue": "",
+              "typeValidation": "loose",
+              "version": 2
+            },
+            "conditions": [
+              {
+                "id": "004d6019-1dee-465c-8a6f-410d07752c74",
+                "leftValue": "={{ $json.candidates[0].content.parts[0].inlineData }}",
+                "rightValue": "",
+                "operator": {
+                  "type": "string",
+                  "operation": "notEmpty",
+                  "singleValue": true
+                }
+              }
+            ],
+            "combinator": "and"
+          },
+          "looseTypeValidation": true,
+          "options": {}
+        },
+        "type": "n8n-nodes-base.filter",
+        "typeVersion": 2.2,
+        "position": [
+          540,
+          380
+        ],
+        "id": "8f434b68-6e9d-4bf0-ac3c-6cad501903c3",
+        "name": "Filter"
+      },
+      {
+        "parameters": {
+          "promptType": "define",
+          "text": "=Input:\n{{ $json.chatInput }}",
+          "hasOutputParser": true,
+          "messages": {
+            "messageValues": [
+              {
+                "message": "=# Role: Prompt Enginner\n\n# Goal: 你擅長把用戶請求轉換為 detailed image generation prompt\n\n# Examples:\n\n## Input:\nIsometric miniature-model view of {city} encapsulated within a cutaway box viewed from a clean, top-\n\n## Output:\nIsometric miniature-model view of {city} encapsulated within a cutaway box viewed from a clean, top-down 45° angle. {weather} weather effects subtly integrated into the scene, with {specific weather effects like snowflakes, clouds, fog, rain, sun etc.} softly interacting with the city above. The city’s base should appear thin and minimal, focusing on the city structures with a more delicate, less pronounced foundation. Physically-based rendering (PBR), realistic lighting. Solid-color background outside the box for clarity and minimalism. Centered composition, emphasizing a precise and delicate diorama aesthetic.\n"
+              }
+            ]
+          }
+        },
+        "type": "@n8n/n8n-nodes-langchain.chainLlm",
+        "typeVersion": 1.6,
+        "position": [
+          60,
+          380
+        ],
+        "id": "03301e0c-90c9-4094-9dcc-070086b05e7a",
+        "name": "Basic LLM Chain",
+        "executeOnce": false,
+        "alwaysOutputData": false,
+        "retryOnFail": true,
+        "maxTries": 2,
+        "waitBetweenTries": 500
+      },
+      {
+        "parameters": {
+          "jsonSchemaExample": "{\n \"prompt\": \"Detailed image generation prompt\"\n}"
+        },
+        "type": "@n8n/n8n-nodes-langchain.outputParserStructured",
+        "typeVersion": 1.2,
+        "position": [
+          240,
+          580
+        ],
+        "id": "615a2d61-3884-4e34-8392-84b0621b8da0",
+        "name": "Structured Output Parser"
+      },
+      {
+        "parameters": {
+          "model": "google/gemini-2.5-pro-exp-03-25:free",
+          "options": {
+            "temperature": 0.8
+          }
+        },
+        "type": "@n8n/n8n-nodes-langchain.lmChatOpenRouter",
+        "typeVersion": 1,
+        "position": [
+          60,
+          580
+        ],
+        "id": "8879e400-0ab9-4131-b5c9-090bb98be6e9",
+        "name": "OpenRouter Chat Model1",
+        "credentials": {
+          "openRouterApi": {
+            "id": "GWbBdrAWpARJgY9C",
+            "name": "OpenRouter account"
+          }
+        }
+      },
+      {
+        "parameters": {
+          "method": "POST",
+          "url": "https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash-exp-image-generation:streamGenerateContent",
+          "authentication": "predefinedCredentialType",
+          "nodeCredentialType": "googlePalmApi",
+          "sendBody": true,
+          "specifyBody": "json",
+          "jsonBody": "={\"contents\":[{\"role\":\"user\",\"parts\":[{\"text\": \"{{ $json.output.prompt }}\"}]}],\"generationConfig\":{\"responseModalities\": [\"text\",\"image\"],\"responseMimeType\": \"text/plain\",\"temperature\": 1.3}}",
+          "options": {}
+        },
+        "type": "n8n-nodes-base.httpRequest",
+        "typeVersion": 4.2,
+        "position": [
+          400,
+          380
+        ],
+        "id": "1ae01aa0-2c57-4b04-b2c1-63c143184691",
+        "name": "圖片生成",
+        "retryOnFail": true,
+        "alwaysOutputData": true,
+        "credentials": {
+          "googlePalmApi": {
+            "id": "z8Gr6WbXdj7merrJ",
+            "name": "Google Gemini(PaLM) Api account"
+          }
+        }
+      }
+    ],
+    "connections": {
+      "When chat message received": {
+        "main": [
+          [
+            {
+              "node": "Basic LLM Chain",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "OpenRouter Chat Model": {
+        "ai_languageModel": [
+          []
+        ]
+      },
+      "Simple Memory": {
+        "ai_memory": [
+          [
+            {
+              "node": "AI Agent",
+              "type": "ai_memory",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Convert to File": {
+        "main": [
+          [
+            {
+              "node": "Discord2",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Edit Fields": {
+        "main": [
+          [
+            {
+              "node": "Convert to File",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Filter": {
+        "main": [
+          [
+            {
+              "node": "Edit Fields",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Basic LLM Chain": {
+        "main": [
+          [
+            {
+              "node": "圖片生成",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Structured Output Parser": {
+        "ai_outputParser": [
+          [
+            {
+              "node": "Basic LLM Chain",
+              "type": "ai_outputParser",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Discord2": {
+        "main": [
+          []
+        ]
+      },
+      "OpenRouter Chat Model1": {
+        "ai_languageModel": [
+          [
+            {
+              "node": "Basic LLM Chain",
+              "type": "ai_languageModel",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "圖片生成": {
+        "main": [
+          [
+            {
+              "node": "Filter",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      }
     },
-    {
-      "createdAt": "2025-04-14T22:11:56.363Z",
-      "updatedAt": "2025-04-20T11:42:15.000Z",
-      "id": "R1ivEU2tjH6lA6e4",
-      "name": "Test",
-      "active": false,
-      "nodes": [
-        {
-          "parameters": {
-            "options": {
-              "allowFileUploads": true
-            }
-          },
-          "type": "@n8n/n8n-nodes-langchain.chatTrigger",
-          "typeVersion": 1.1,
-          "position": [
-            -100,
-            380
-          ],
-          "id": "79334ff1-e5d4-407f-8239-97538d7be507",
-          "name": "When chat message received",
-          "webhookId": "2276b343-32e3-43e8-9c21-b3abe17e9185"
-        },
-        {
-          "parameters": {
-            "options": {}
-          },
-          "type": "@n8n/n8n-nodes-langchain.agent",
-          "typeVersion": 1.8,
-          "position": [
-            240,
-            20
-          ],
-          "id": "b6d75eef-bb48-476d-ad95-5ccdc8fdcd31",
-          "name": "AI Agent"
-        },
-        {
-          "parameters": {
-            "model": "google/gemini-2.5-pro-exp-03-25:free",
-            "options": {}
-          },
-          "type": "@n8n/n8n-nodes-langchain.lmChatOpenRouter",
-          "typeVersion": 1,
-          "position": [
-            80,
-            220
-          ],
-          "id": "f8e33c3f-589d-46fc-b8fb-7395333558a9",
-          "name": "OpenRouter Chat Model",
-          "credentials": {
-            "openRouterApi": {
-              "id": "GWbBdrAWpARJgY9C",
-              "name": "OpenRouter account"
-            }
-          }
-        },
-        {
-          "parameters": {},
-          "type": "@n8n/n8n-nodes-langchain.memoryBufferWindow",
-          "typeVersion": 1.3,
-          "position": [
-            320,
-            220
-          ],
-          "id": "d85f9d53-64a3-4feb-aad3-3ac597cac0b8",
-          "name": "Simple Memory"
-        },
-        {
-          "parameters": {
-            "resource": "message",
-            "guildId": {
-              "__rl": true,
-              "value": "1342146307019509781",
-              "mode": "list",
-              "cachedResultName": "軟體專案管理",
-              "cachedResultUrl": "https://discord.com/channels/1342146307019509781"
-            },
-            "channelId": {
-              "__rl": true,
-              "value": "1361739702717124918",
-              "mode": "list",
-              "cachedResultName": "測試",
-              "cachedResultUrl": "https://discord.com/channels/1342146307019509781/1361739702717124918"
-            },
-            "content": "=",
-            "options": {},
-            "files": {
-              "values": [
-                {}
-              ]
-            }
-          },
-          "type": "n8n-nodes-base.discord",
-          "typeVersion": 2,
-          "position": [
-            900,
-            380
-          ],
-          "id": "578e8e82-3b6b-48e9-bbe3-ea8dbbc8bae0",
-          "name": "Discord2",
-          "webhookId": "a74f4df1-3dd8-4d50-9a41-8ed5fdda4535",
-          "retryOnFail": true,
-          "maxTries": 2,
-          "credentials": {
-            "discordBotApi": {
-              "id": "JC8qRNhiT4LJUYFz",
-              "name": "Discord Bot account"
-            }
-          }
-        },
-        {
-          "parameters": {
-            "operation": "toBinary",
-            "sourceProperty": "image[0]",
-            "options": {
-              "mimeType": "=image/png"
-            }
-          },
-          "type": "n8n-nodes-base.convertToFile",
-          "typeVersion": 1.1,
-          "position": [
-            780,
-            380
-          ],
-          "id": "539d5833-0435-4025-91c4-9e5467b7cde5",
-          "name": "Convert to File"
-        },
-        {
-          "parameters": {
-            "assignments": {
-              "assignments": [
-                {
-                  "id": "74f3e380-7d9f-4e6c-a464-1b28230fa8da",
-                  "name": "image",
-                  "value": "={{ $json.candidates\n   .map(c => c.content.parts?.[0]?.inlineData?.data) }}",
-                  "type": "array"
-                }
-              ]
-            },
-            "options": {
-              "ignoreConversionErrors": true
-            }
-          },
-          "type": "n8n-nodes-base.set",
-          "typeVersion": 3.4,
-          "position": [
-            660,
-            380
-          ],
-          "id": "225c76c5-1f3f-4eb9-b0bf-4b0da6134b58",
-          "name": "Edit Fields"
-        },
-        {
-          "parameters": {
-            "conditions": {
-              "options": {
-                "caseSensitive": true,
-                "leftValue": "",
-                "typeValidation": "loose",
-                "version": 2
-              },
-              "conditions": [
-                {
-                  "id": "004d6019-1dee-465c-8a6f-410d07752c74",
-                  "leftValue": "={{ $json.candidates[0].content.parts[0].inlineData }}",
-                  "rightValue": "",
-                  "operator": {
-                    "type": "string",
-                    "operation": "notEmpty",
-                    "singleValue": true
-                  }
-                }
-              ],
-              "combinator": "and"
-            },
-            "looseTypeValidation": true,
-            "options": {}
-          },
-          "type": "n8n-nodes-base.filter",
-          "typeVersion": 2.2,
-          "position": [
-            540,
-            380
-          ],
-          "id": "8f434b68-6e9d-4bf0-ac3c-6cad501903c3",
-          "name": "Filter"
-        },
-        {
-          "parameters": {
-            "promptType": "define",
-            "text": "=Input:\n{{ $json.chatInput }}",
-            "hasOutputParser": true,
-            "messages": {
-              "messageValues": [
-                {
-                  "message": "=# Role: Prompt Enginner\n\n# Goal: 你擅長把用戶請求轉換為 detailed image generation prompt\n\n# Examples:\n\n## Input:\nIsometric miniature-model view of {city} encapsulated within a cutaway box viewed from a clean, top-\n\n## Output:\nIsometric miniature-model view of {city} encapsulated within a cutaway box viewed from a clean, top-down 45° angle. {weather} weather effects subtly integrated into the scene, with {specific weather effects like snowflakes, clouds, fog, rain, sun etc.} softly interacting with the city above. The city’s base should appear thin and minimal, focusing on the city structures with a more delicate, less pronounced foundation. Physically-based rendering (PBR), realistic lighting. Solid-color background outside the box for clarity and minimalism. Centered composition, emphasizing a precise and delicate diorama aesthetic.\n"
-                }
-              ]
-            }
-          },
-          "type": "@n8n/n8n-nodes-langchain.chainLlm",
-          "typeVersion": 1.6,
-          "position": [
-            60,
-            380
-          ],
-          "id": "03301e0c-90c9-4094-9dcc-070086b05e7a",
-          "name": "Basic LLM Chain",
-          "executeOnce": false,
-          "alwaysOutputData": false,
-          "retryOnFail": true,
-          "maxTries": 2,
-          "waitBetweenTries": 500
-        },
-        {
-          "parameters": {
-            "jsonSchemaExample": "{\n \"prompt\": \"Detailed image generation prompt\"\n}"
-          },
-          "type": "@n8n/n8n-nodes-langchain.outputParserStructured",
-          "typeVersion": 1.2,
-          "position": [
-            240,
-            580
-          ],
-          "id": "615a2d61-3884-4e34-8392-84b0621b8da0",
-          "name": "Structured Output Parser"
-        },
-        {
-          "parameters": {
-            "model": "google/gemini-2.5-pro-exp-03-25:free",
-            "options": {
-              "temperature": 0.8
-            }
-          },
-          "type": "@n8n/n8n-nodes-langchain.lmChatOpenRouter",
-          "typeVersion": 1,
-          "position": [
-            60,
-            580
-          ],
-          "id": "8879e400-0ab9-4131-b5c9-090bb98be6e9",
-          "name": "OpenRouter Chat Model1",
-          "credentials": {
-            "openRouterApi": {
-              "id": "GWbBdrAWpARJgY9C",
-              "name": "OpenRouter account"
-            }
-          }
-        },
-        {
-          "parameters": {
-            "method": "POST",
-            "url": "https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash-exp-image-generation:streamGenerateContent",
-            "authentication": "predefinedCredentialType",
-            "nodeCredentialType": "googlePalmApi",
-            "sendBody": true,
-            "specifyBody": "json",
-            "jsonBody": "={\"contents\":[{\"role\":\"user\",\"parts\":[{\"text\": \"{{ $json.output.prompt }}\"}]}],\"generationConfig\":{\"responseModalities\": [\"text\",\"image\"],\"responseMimeType\": \"text/plain\",\"temperature\": 1.3}}",
-            "options": {}
-          },
-          "type": "n8n-nodes-base.httpRequest",
-          "typeVersion": 4.2,
-          "position": [
-            400,
-            380
-          ],
-          "id": "1ae01aa0-2c57-4b04-b2c1-63c143184691",
-          "name": "圖片生成",
-          "retryOnFail": true,
-          "alwaysOutputData": true,
-          "credentials": {
-            "googlePalmApi": {
-              "id": "z8Gr6WbXdj7merrJ",
-              "name": "Google Gemini(PaLM) Api account"
-            }
-          }
-        }
-      ],
-      "connections": {
-        "When chat message received": {
-          "main": [
-            [
-              {
-                "node": "Basic LLM Chain",
-                "type": "main",
-                "index": 0
-              }
-            ]
-          ]
-        },
-        "OpenRouter Chat Model": {
-          "ai_languageModel": [
-            []
-          ]
-        },
-        "Simple Memory": {
-          "ai_memory": [
-            [
-              {
-                "node": "AI Agent",
-                "type": "ai_memory",
-                "index": 0
-              }
-            ]
-          ]
-        },
-        "Convert to File": {
-          "main": [
-            [
-              {
-                "node": "Discord2",
-                "type": "main",
-                "index": 0
-              }
-            ]
-          ]
-        },
-        "Edit Fields": {
-          "main": [
-            [
-              {
-                "node": "Convert to File",
-                "type": "main",
-                "index": 0
-              }
-            ]
-          ]
-        },
-        "Filter": {
-          "main": [
-            [
-              {
-                "node": "Edit Fields",
-                "type": "main",
-                "index": 0
-              }
-            ]
-          ]
-        },
-        "Basic LLM Chain": {
-          "main": [
-            [
-              {
-                "node": "圖片生成",
-                "type": "main",
-                "index": 0
-              }
-            ]
-          ]
-        },
-        "Structured Output Parser": {
-          "ai_outputParser": [
-            [
-              {
-                "node": "Basic LLM Chain",
-                "type": "ai_outputParser",
-                "index": 0
-              }
-            ]
-          ]
-        },
-        "Discord2": {
-          "main": [
-            []
-          ]
-        },
-        "OpenRouter Chat Model1": {
-          "ai_languageModel": [
-            [
-              {
-                "node": "Basic LLM Chain",
-                "type": "ai_languageModel",
-                "index": 0
-              }
-            ]
-          ]
-        },
-        "圖片生成": {
-          "main": [
-            [
-              {
-                "node": "Filter",
-                "type": "main",
-                "index": 0
-              }
-            ]
-          ]
-        }
-      },
-      "settings": {
-        "executionOrder": "v1"
-      },
-      "staticData": null,
-      "meta": {
-        "templateCredsSetupCompleted": true
-      },
-      "pinData": {},
-      "versionId": "717d88f0-9bdb-4ba3-81bd-2b6204b5b5f1",
-      "triggerCount": 0,
-      "tags": []
-    }
-  ]
+    "settings": {
+      "executionOrder": "v1"
+    },
+    "staticData": null,
+    "meta": {
+      "templateCredsSetupCompleted": true
+    },
+    "pinData": {},
+    "versionId": "717d88f0-9bdb-4ba3-81bd-2b6204b5b5f1",
+    "triggerCount": 0,
+    "tags": []
+  }
+]
+>>>>>>> aa8be0d22ef5e7a7a59947a9efb61cef5aee4c83
