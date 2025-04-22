@@ -1,2 +1,3 @@
-bride_name,groom_name,wedding_date,week_day,time,venue_name,venue_address,bride_name_en,groom_name_en,wedding_date_en,week_day_en,time_en,venue_name_en,venue_address_en
-林小玉,張志明,2025-10-18,六,下午 5:30,喜悅花園婚宴廳,台北市信義區松山路123號,Xiaoyu Lin,Zhiming Zhang,"October 18, 2025",Saturday,5:30 PM,Joyful Garden Wedding Hall,"No. 123, Songshan Rd., Xinyi Dist., Taipei City"
+bride_name,groom_name,wedding_date,week_day,time,venue_name,venue_address,bride_name_en,groom_name_en,wedding_date_en,week_day_en,time_en,venue_name_en,venue_address_en,rsvp_deadline,rsvp_deadline_en
+林小玉,張志明,2025-10-18,六,下午 5:30,喜悅花園婚宴廳,台北市信義區松山路123號,Xiaoyu Lin,Zhiming Zhang,"October 18, 2025",Saturday,5:30 PM,Joyful Garden Wedding Hall,"No. 123, Songshan Rd., Xinyi Dist., Taipei City",2025-9-10,"September
+ 18, 2025"
