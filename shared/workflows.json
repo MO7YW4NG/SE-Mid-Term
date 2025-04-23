@@ -1,1573 +1,1282 @@
 [
     {
-        "createdAt": "2025-04-20T15:31:37.604Z",
-        "updatedAt": "2025-04-22T12:56:32.000Z",
-        "id": "IgHWfNufCgjtHl2N",
-        "name": "Demo: My first AI Agent in n8n",
-        "active": false,
-        "nodes": [
-            {
-                "parameters": {
-                    "options": {}
-                },
-                "id": "5b410409-5b0b-47bd-b413-5b9b1000a063",
-                "name": "When chat message received",
-                "type": "@n8n/n8n-nodes-langchain.chatTrigger",
-                "typeVersion": 1.1,
-                "position": [
-                    360,
-                    20
-                ],
-                "webhookId": "a889d2ae-2159-402f-b326-5f61e90f602e"
+      "createdAt": "2025-04-14T22:11:56.363Z",
+      "updatedAt": "2025-04-20T11:42:15.000Z",
+      "id": "R1ivEU2tjH6lA6e4",
+      "name": "Test",
+      "active": false,
+      "nodes": [
+        {
+          "parameters": {
+            "options": {
+              "allowFileUploads": true
+            }
+          },
+          "type": "@n8n/n8n-nodes-langchain.chatTrigger",
+          "typeVersion": 1.1,
+          "position": [
+            -100,
+            380
+          ],
+          "id": "79334ff1-e5d4-407f-8239-97538d7be507",
+          "name": "When chat message received",
+          "webhookId": "2276b343-32e3-43e8-9c21-b3abe17e9185"
+        },
+        {
+          "parameters": {
+            "options": {}
+          },
+          "type": "@n8n/n8n-nodes-langchain.agent",
+          "typeVersion": 1.8,
+          "position": [
+            240,
+            20
+          ],
+          "id": "b6d75eef-bb48-476d-ad95-5ccdc8fdcd31",
+          "name": "AI Agent"
+        },
+        {
+          "parameters": {
+            "model": "google/gemini-2.5-pro-exp-03-25:free",
+            "options": {}
+          },
+          "type": "@n8n/n8n-nodes-langchain.lmChatOpenRouter",
+          "typeVersion": 1,
+          "position": [
+            80,
+            220
+          ],
+          "id": "f8e33c3f-589d-46fc-b8fb-7395333558a9",
+          "name": "OpenRouter Chat Model",
+          "credentials": {
+            "openRouterApi": {
+              "id": "GWbBdrAWpARJgY9C",
+              "name": "OpenRouter account"
+            }
+          }
+        },
+        {
+          "parameters": {},
+          "type": "@n8n/n8n-nodes-langchain.memoryBufferWindow",
+          "typeVersion": 1.3,
+          "position": [
+            320,
+            220
+          ],
+          "id": "d85f9d53-64a3-4feb-aad3-3ac597cac0b8",
+          "name": "Simple Memory"
+        },
+        {
+          "parameters": {
+            "resource": "message",
+            "guildId": {
+              "__rl": true,
+              "value": "1342146307019509781",
+              "mode": "list",
+              "cachedResultName": "軟體專案管理",
+              "cachedResultUrl": "https://discord.com/channels/1342146307019509781"
             },
-            {
-                "parameters": {
-                    "options": {
-                        "systemMessage": "=You're a helpful assistant that helps the user answer questions about their calendar.\n\nToday is {{ $now.format('cccc') }} the {{ $now.format('yyyy-MM-dd HH:mm') }}."
-                    }
-                },
-                "id": "29963449-1dc1-487d-96f2-7ff0a5c3cd97",
-                "name": "AI Agent",
-                "type": "@n8n/n8n-nodes-langchain.agent",
-                "typeVersion": 1.7,
-                "position": [
-                    560,
-                    20
-                ]
+            "channelId": {
+              "__rl": true,
+              "value": "1361739702717124918",
+              "mode": "list",
+              "cachedResultName": "測試",
+              "cachedResultUrl": "https://discord.com/channels/1342146307019509781/1361739702717124918"
             },
-            {
-                "parameters": {},
-                "id": "75481370-bade-4d90-a878-3a3b0201edcc",
-                "name": "Memory",
-                "type": "@n8n/n8n-nodes-langchain.memoryBufferWindow",
-                "typeVersion": 1.3,
-                "position": [
-                    660,
-                    200
-                ]
-            },
-            {
-                "parameters": {
-                    "model": "google/gemini-2.5-pro-exp-03-25:free",
-                    "options": {}
-                },
-                "type": "@n8n/n8n-nodes-langchain.lmChatOpenRouter",
-                "typeVersion": 1,
-                "position": [
-                    540,
-                    200
-                ],
-                "id": "a3236069-1131-4070-a142-f0ab49fc69a0",
-                "name": "OpenRouter Chat Model",
-                "credentials": {
-                    "openRouterApi": {
-                        "id": "GWbBdrAWpARJgY9C",
-                        "name": "OpenRouter account"
-                    }
+            "content": "=",
+            "options": {},
+            "files": {
+              "values": [
+                {}
+              ]
+            }
+          },
+          "type": "n8n-nodes-base.discord",
+          "typeVersion": 2,
+          "position": [
+            900,
+            380
+          ],
+          "id": "578e8e82-3b6b-48e9-bbe3-ea8dbbc8bae0",
+          "name": "Discord2",
+          "webhookId": "a74f4df1-3dd8-4d50-9a41-8ed5fdda4535",
+          "retryOnFail": true,
+          "maxTries": 2,
+          "credentials": {
+            "discordBotApi": {
+              "id": "JC8qRNhiT4LJUYFz",
+              "name": "Discord Bot account"
+            }
+          }
+        },
+        {
+          "parameters": {
+            "operation": "toBinary",
+            "sourceProperty": "image[0]",
+            "options": {
+              "mimeType": "=image/png"
+            }
+          },
+          "type": "n8n-nodes-base.convertToFile",
+          "typeVersion": 1.1,
+          "position": [
+            780,
+            380
+          ],
+          "id": "539d5833-0435-4025-91c4-9e5467b7cde5",
+          "name": "Convert to File"
+        },
+        {
+          "parameters": {
+            "assignments": {
+              "assignments": [
+                {
+                  "id": "74f3e380-7d9f-4e6c-a464-1b28230fa8da",
+                  "name": "image",
+                  "value": "={{ $json.candidates\n   .map(c => c.content.parts?.[0]?.inlineData?.data) }}",
+                  "type": "array"
                 }
-            }
-        ],
-        "connections": {
-            "When chat message received": {
-                "main": [
-                    [
-                        {
-                            "node": "AI Agent",
-                            "type": "main",
-                            "index": 0
-                        }
-                    ]
-                ]
+              ]
             },
-            "Memory": {
-                "ai_memory": [
-                    [
-                        {
-                            "node": "AI Agent",
-                            "type": "ai_memory",
-                            "index": 0
-                        }
-                    ]
-                ]
-            },
-            "OpenRouter Chat Model": {
-                "ai_languageModel": [
-                    [
-                        {
-                            "node": "AI Agent",
-                            "type": "ai_languageModel",
-                            "index": 0
-                        }
-                    ]
-                ]
+            "options": {
+              "ignoreConversionErrors": true
             }
+          },
+          "type": "n8n-nodes-base.set",
+          "typeVersion": 3.4,
+          "position": [
+            660,
+            380
+          ],
+          "id": "225c76c5-1f3f-4eb9-b0bf-4b0da6134b58",
+          "name": "Edit Fields"
         },
-        "settings": {
-            "executionOrder": "v1"
+        {
+          "parameters": {
+            "conditions": {
+              "options": {
+                "caseSensitive": true,
+                "leftValue": "",
+                "typeValidation": "loose",
+                "version": 2
+              },
+              "conditions": [
+                {
+                  "id": "004d6019-1dee-465c-8a6f-410d07752c74",
+                  "leftValue": "={{ $json.candidates[0].content.parts[0].inlineData }}",
+                  "rightValue": "",
+                  "operator": {
+                    "type": "string",
+                    "operation": "notEmpty",
+                    "singleValue": true
+                  }
+                }
+              ],
+              "combinator": "and"
+            },
+            "looseTypeValidation": true,
+            "options": {}
+          },
+          "type": "n8n-nodes-base.filter",
+          "typeVersion": 2.2,
+          "position": [
+            540,
+            380
+          ],
+          "id": "8f434b68-6e9d-4bf0-ac3c-6cad501903c3",
+          "name": "Filter"
         },
-        "staticData": null,
-        "meta": {
-            "templateId": "PT1i+zU92Ii5O2XCObkhfHJR5h9rNJTpiCIkYJk9jHU=",
-            "templateCredsSetupCompleted": true
+        {
+          "parameters": {
+            "promptType": "define",
+            "text": "=Input:\n{{ $json.chatInput }}",
+            "hasOutputParser": true,
+            "messages": {
+              "messageValues": [
+                {
+                  "message": "=# Role: Prompt Enginner\n\n# Goal: 你擅長把用戶請求轉換為 detailed image generation prompt\n\n# Examples:\n\n## Input:\nIsometric miniature-model view of {city} encapsulated within a cutaway box viewed from a clean, top-\n\n## Output:\nIsometric miniature-model view of {city} encapsulated within a cutaway box viewed from a clean, top-down 45° angle. {weather} weather effects subtly integrated into the scene, with {specific weather effects like snowflakes, clouds, fog, rain, sun etc.} softly interacting with the city above. The city’s base should appear thin and minimal, focusing on the city structures with a more delicate, less pronounced foundation. Physically-based rendering (PBR), realistic lighting. Solid-color background outside the box for clarity and minimalism. Centered composition, emphasizing a precise and delicate diorama aesthetic.\n"
+                }
+              ]
+            }
+          },
+          "type": "@n8n/n8n-nodes-langchain.chainLlm",
+          "typeVersion": 1.6,
+          "position": [
+            60,
+            380
+          ],
+          "id": "03301e0c-90c9-4094-9dcc-070086b05e7a",
+          "name": "Basic LLM Chain",
+          "executeOnce": false,
+          "alwaysOutputData": false,
+          "retryOnFail": true,
+          "maxTries": 2,
+          "waitBetweenTries": 500
         },
-        "pinData": {},
-        "versionId": "8a538d9d-3f3a-464f-852b-b5e8947f17d9",
-        "triggerCount": 0,
-        "tags": []
+        {
+          "parameters": {
+            "jsonSchemaExample": "{\n \"prompt\": \"Detailed image generation prompt\"\n}"
+          },
+          "type": "@n8n/n8n-nodes-langchain.outputParserStructured",
+          "typeVersion": 1.2,
+          "position": [
+            240,
+            580
+          ],
+          "id": "615a2d61-3884-4e34-8392-84b0621b8da0",
+          "name": "Structured Output Parser"
+        },
+        {
+          "parameters": {
+            "model": "google/gemini-2.5-pro-exp-03-25:free",
+            "options": {
+              "temperature": 0.8
+            }
+          },
+          "type": "@n8n/n8n-nodes-langchain.lmChatOpenRouter",
+          "typeVersion": 1,
+          "position": [
+            60,
+            580
+          ],
+          "id": "8879e400-0ab9-4131-b5c9-090bb98be6e9",
+          "name": "OpenRouter Chat Model1",
+          "credentials": {
+            "openRouterApi": {
+              "id": "GWbBdrAWpARJgY9C",
+              "name": "OpenRouter account"
+            }
+          }
+        },
+        {
+          "parameters": {
+            "method": "POST",
+            "url": "https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash-exp-image-generation:streamGenerateContent",
+            "authentication": "predefinedCredentialType",
+            "nodeCredentialType": "googlePalmApi",
+            "sendBody": true,
+            "specifyBody": "json",
+            "jsonBody": "={\"contents\":[{\"role\":\"user\",\"parts\":[{\"text\": \"{{ $json.output.prompt }}\"}]}],\"generationConfig\":{\"responseModalities\": [\"text\",\"image\"],\"responseMimeType\": \"text/plain\",\"temperature\": 1.3}}",
+            "options": {}
+          },
+          "type": "n8n-nodes-base.httpRequest",
+          "typeVersion": 4.2,
+          "position": [
+            400,
+            380
+          ],
+          "id": "1ae01aa0-2c57-4b04-b2c1-63c143184691",
+          "name": "圖片生成",
+          "retryOnFail": true,
+          "alwaysOutputData": true,
+          "credentials": {
+            "googlePalmApi": {
+              "id": "z8Gr6WbXdj7merrJ",
+              "name": "Google Gemini(PaLM) Api account"
+            }
+          }
+        }
+      ],
+      "connections": {
+        "When chat message received": {
+          "main": [
+            [
+              {
+                "node": "Basic LLM Chain",
+                "type": "main",
+                "index": 0
+              }
+            ]
+          ]
+        },
+        "OpenRouter Chat Model": {
+          "ai_languageModel": [
+            []
+          ]
+        },
+        "Simple Memory": {
+          "ai_memory": [
+            [
+              {
+                "node": "AI Agent",
+                "type": "ai_memory",
+                "index": 0
+              }
+            ]
+          ]
+        },
+        "Convert to File": {
+          "main": [
+            [
+              {
+                "node": "Discord2",
+                "type": "main",
+                "index": 0
+              }
+            ]
+          ]
+        },
+        "Edit Fields": {
+          "main": [
+            [
+              {
+                "node": "Convert to File",
+                "type": "main",
+                "index": 0
+              }
+            ]
+          ]
+        },
+        "Filter": {
+          "main": [
+            [
+              {
+                "node": "Edit Fields",
+                "type": "main",
+                "index": 0
+              }
+            ]
+          ]
+        },
+        "Basic LLM Chain": {
+          "main": [
+            [
+              {
+                "node": "圖片生成",
+                "type": "main",
+                "index": 0
+              }
+            ]
+          ]
+        },
+        "Structured Output Parser": {
+          "ai_outputParser": [
+            [
+              {
+                "node": "Basic LLM Chain",
+                "type": "ai_outputParser",
+                "index": 0
+              }
+            ]
+          ]
+        },
+        "Discord2": {
+          "main": [
+            []
+          ]
+        },
+        "OpenRouter Chat Model1": {
+          "ai_languageModel": [
+            [
+              {
+                "node": "Basic LLM Chain",
+                "type": "ai_languageModel",
+                "index": 0
+              }
+            ]
+          ]
+        },
+        "圖片生成": {
+          "main": [
+            [
+              {
+                "node": "Filter",
+                "type": "main",
+                "index": 0
+              }
+            ]
+          ]
+        }
+      },
+      "settings": {
+        "executionOrder": "v1"
+      },
+      "staticData": null,
+      "meta": {
+        "templateCredsSetupCompleted": true
+      },
+      "pinData": {},
+      "versionId": "717d88f0-9bdb-4ba3-81bd-2b6204b5b5f1",
+      "triggerCount": 0,
+      "tags": []
     },
     {
-        "createdAt": "2025-04-14T22:11:56.363Z",
-        "updatedAt": "2025-04-14T22:13:53.000Z",
-        "id": "R1ivEU2tjH6lA6e4",
-        "name": "Test",
-        "active": false,
-        "nodes": [
-            {
-                "parameters": {
-                    "options": {
-                        "allowFileUploads": true
-                    }
-                },
-                "type": "@n8n/n8n-nodes-langchain.chatTrigger",
-                "typeVersion": 1.1,
-                "position": [
-                    0,
-                    0
-                ],
-                "id": "79334ff1-e5d4-407f-8239-97538d7be507",
-                "name": "When chat message received",
-                "webhookId": "2276b343-32e3-43e8-9c21-b3abe17e9185"
-            },
-            {
-                "parameters": {
-                    "options": {}
-                },
-                "type": "@n8n/n8n-nodes-langchain.agent",
-                "typeVersion": 1.8,
-                "position": [
-                    220,
-                    0
-                ],
-                "id": "b6d75eef-bb48-476d-ad95-5ccdc8fdcd31",
-                "name": "AI Agent"
-            },
-            {
-                "parameters": {
-                    "model": "google/gemini-2.5-pro-exp-03-25:free",
-                    "options": {}
-                },
-                "type": "@n8n/n8n-nodes-langchain.lmChatOpenRouter",
-                "typeVersion": 1,
-                "position": [
-                    180,
-                    200
-                ],
-                "id": "f8e33c3f-589d-46fc-b8fb-7395333558a9",
-                "name": "OpenRouter Chat Model",
-                "credentials": {
-                    "openRouterApi": {
-                        "id": "GWbBdrAWpARJgY9C",
-                        "name": "OpenRouter account"
-                    }
+      "createdAt": "2025-04-18T20:30:29.890Z",
+      "updatedAt": "2025-04-23T18:51:20.000Z",
+      "id": "YxHB45QpONoAudHe",
+      "name": "Wedding Invites",
+      "active": true,
+      "nodes": [
+        {
+          "parameters": {
+            "content": "# 背景文件讀取",
+            "height": 520,
+            "width": 860,
+            "color": 5
+          },
+          "type": "n8n-nodes-base.stickyNote",
+          "position": [
+            -280,
+            -100
+          ],
+          "typeVersion": 1,
+          "id": "3af5eaa0-1640-4c7e-9726-4beec83b8e1c",
+          "name": "Sticky Note"
+        },
+        {
+          "parameters": {
+            "fileSelector": "/shared/couple.csv",
+            "options": {}
+          },
+          "type": "n8n-nodes-base.readWriteFile",
+          "typeVersion": 1,
+          "position": [
+            -20,
+            0
+          ],
+          "id": "712aed13-bc52-401f-91b2-a2faca5846b1",
+          "name": "讀取新人資料"
+        },
+        {
+          "parameters": {
+            "fileSelector": "/shared/guests.csv",
+            "options": {}
+          },
+          "type": "n8n-nodes-base.readWriteFile",
+          "typeVersion": 1,
+          "position": [
+            -20,
+            200
+          ],
+          "id": "6dbba935-af87-4564-8404-88aadeb92d21",
+          "name": "讀取賓客資料"
+        },
+        {
+          "parameters": {
+            "options": {}
+          },
+          "type": "n8n-nodes-base.extractFromFile",
+          "typeVersion": 1,
+          "position": [
+            200,
+            0
+          ],
+          "id": "69bb2a5f-886c-4d57-9dd0-d4ea3b25ff90",
+          "name": "讀取變數"
+        },
+        {
+          "parameters": {
+            "options": {}
+          },
+          "type": "n8n-nodes-base.extractFromFile",
+          "typeVersion": 1,
+          "position": [
+            200,
+            200
+          ],
+          "id": "46ba4cdf-a043-4622-8609-341735922bfd",
+          "name": "讀取變數1"
+        },
+        {
+          "parameters": {
+            "mode": "combine",
+            "combineBy": "combineAll",
+            "options": {}
+          },
+          "type": "n8n-nodes-base.merge",
+          "typeVersion": 3.1,
+          "position": [
+            420,
+            100
+          ],
+          "id": "96cfc0c8-adc8-4b96-a35b-7f112878325d",
+          "name": "合併資料流"
+        },
+        {
+          "parameters": {
+            "conditions": {
+              "options": {
+                "caseSensitive": true,
+                "leftValue": "",
+                "typeValidation": "loose",
+                "version": 2
+              },
+              "conditions": [
+                {
+                  "id": "5b6d6f36-742b-44cb-b6e5-07b133d87024",
+                  "leftValue": "={{$node[\"合併資料流\"].json.language}}",
+                  "rightValue": "=en",
+                  "operator": {
+                    "type": "string",
+                    "operation": "equals"
+                  }
                 }
+              ],
+              "combinator": "and"
             },
-            {
-                "parameters": {},
-                "type": "@n8n/n8n-nodes-langchain.memoryBufferWindow",
-                "typeVersion": 1.3,
-                "position": [
-                    320,
-                    220
-                ],
-                "id": "d85f9d53-64a3-4feb-aad3-3ac597cac0b8",
-                "name": "Simple Memory"
+            "looseTypeValidation": true,
+            "options": {}
+          },
+          "type": "n8n-nodes-base.if",
+          "typeVersion": 2.2,
+          "position": [
+            640,
+            100
+          ],
+          "id": "9e683810-bfd4-49c6-86df-ad214fac52a8",
+          "name": "中英文判斷"
+        },
+        {
+          "parameters": {
+            "content": "# 邀情函內容生成\n## - 中文: DeepSeek R1\n## - 英文: Gemini 2.5 Pro",
+            "height": 520,
+            "width": 640,
+            "color": 3
+          },
+          "type": "n8n-nodes-base.stickyNote",
+          "position": [
+            600,
+            -100
+          ],
+          "typeVersion": 1,
+          "id": "56f7e904-e720-4415-8efb-253a44468403",
+          "name": "Sticky Note1"
+        },
+        {
+          "parameters": {
+            "content": "# 信件寄送",
+            "height": 520,
+            "width": 800
+          },
+          "type": "n8n-nodes-base.stickyNote",
+          "position": [
+            1260,
+            -100
+          ],
+          "typeVersion": 1,
+          "id": "533a0270-a06b-4ed5-8a79-4a2410680a76",
+          "name": "Sticky Note2"
+        },
+        {
+          "parameters": {
+            "mode": "raw",
+            "jsonOutput": "={\n  \"role\": \"user\",\n  \"content\": \"Please write a warm and personal wedding invitation for {{ $('合併資料流').item.json.name }}.\nBride: {{ $('合併資料流').item.json.bride_name }}, Groom: {{ $('合併資料流').item.json.groom_name }}\nRelationship:{{ $('合併資料流').item.json.relationship }} \nStory: {{ $('合併資料流').item.json.favorite_memory }}\"\n}",
+            "options": {}
+          },
+          "type": "n8n-nodes-base.set",
+          "typeVersion": 3.4,
+          "position": [
+            860,
+            0
+          ],
+          "id": "a54c9d84-98f6-4ffd-9ea1-15251f15f915",
+          "name": "提示撰寫"
+        },
+        {
+          "parameters": {
+            "mode": "raw",
+            "jsonOutput": "={\n  \"bride_name\": \"小美\",\n  \"groom_name\": \"張志明\",\n  \"guest_name\": \"王小明\",\n  \"relation\": \"大學同學\",\n  \"story\": \"一起去日本背包旅行時，迷路卻意外吃到超好吃的拉麵\",\n  \"wedding_date\": \"2025-06-15\",\n  \"week_day\": \"日\",\n  \"time\": \"下午 5:30\",\n  \"venue_name\": \"晶華酒店 3 樓宴會廳\",\n  \"venue_address\": \"台北市中山區中山北路二段39巷3號\",\n  \"rsvp\": \"請回覆 0912-345-678 或 email@example.com\",\n  \"rsvp_deadline\": \"2025-05-31\"\n}\n",
+            "options": {}
+          },
+          "type": "n8n-nodes-base.set",
+          "typeVersion": 3.4,
+          "position": [
+            860,
+            200
+          ],
+          "id": "05176d6c-b56b-42d4-b66b-f82cd9715448",
+          "name": "提示撰寫1"
+        },
+        {
+          "parameters": {
+            "method": "POST",
+            "url": "https://openrouter.ai/api/v1/chat/completions",
+            "authentication": "predefinedCredentialType",
+            "nodeCredentialType": "openRouterApi",
+            "sendHeaders": true,
+            "headerParameters": {
+              "parameters": [
+                {
+                  "name": "Content-Type",
+                  "value": "application/json"
+                }
+              ]
+            },
+            "sendBody": true,
+            "specifyBody": "json",
+            "jsonBody": "={\n  \"model\": \"google/gemini-2.5-pro-exp-03-25:free\",\n  \"messages\": [\n    {\n      \"role\": \"system\",\n      \"content\": \"You are a wedding invitation specialist. Generate only the actual content of the invitation without including any instructions, suggestions, or guidance. Do not use brackets to mark content that needs to be replaced. Directly fill in the invitation with the provided information. Do not mention that you are an AI or include any meta-explanations in your response. For each guest, create a completely unique invitation - don't use a fixed template. Instead, make each letter have its own unique expression, structure, and language style. Use the guest's relationship with the couple and their shared memories to create truly personalized content.\"\n    },\n    {\n      \"role\": \"user\",\n      \"content\": \"Please generate a completely unique wedding invitation letter for the following guest. Do not use any fixed templates.Please write it in English.：\n\n新人：{{ $('合併資料流').item.json.bride_name_en }} &{{ $('合併資料流').item.json.groom_name_en }}\n收件人：{{ $('合併資料流').item.json.name }}\n關係：{{ $('合併資料流').item.json.relationship }}\n小故事：{{ $('合併資料流').item.json.favorite_memory }}\n婚禮日期：{{ $('合併資料流').item.json.wedding_date_en }}\n星期幾：{{ $('合併資料流').item.json.week_day_en }}\n時間：{{ $('合併資料流').item.json.time_en }}\n地點名稱：{{ $('合併資料流').item.json.venue_name_en }}\n地點地址：{{ $('合併資料流').item.json.venue_address_en }}\n\nCreate truly unique content based on the relationship and shared stories. Try different openings, structures, and expressions to make each invitation one-of-a-kind. Feel free to incorporate warm, humorous, or emotional elements that reflect the special relationship between the guest and the couple.\"\n    }\n  ],\n  \"temperature\": 0.9\n}",
+            "options": {}
+          },
+          "type": "n8n-nodes-base.httpRequest",
+          "typeVersion": 4.2,
+          "position": [
+            1080,
+            0
+          ],
+          "id": "9764c007-7dae-4463-86c6-f9b15abcfa24",
+          "name": "英文內容生成",
+          "credentials": {
+            "openRouterApi": {
+              "id": "GWbBdrAWpARJgY9C",
+              "name": "OpenRouter account"
             }
-        ],
-        "connections": {
-            "When chat message received": {
-                "main": [
-                    [
-                        {
-                            "node": "AI Agent",
-                            "type": "main",
-                            "index": 0
-                        }
-                    ]
-                ]
+          }
+        },
+        {
+          "parameters": {
+            "method": "POST",
+            "url": "https://openrouter.ai/api/v1/chat/completions",
+            "authentication": "predefinedCredentialType",
+            "nodeCredentialType": "openRouterApi",
+            "sendHeaders": true,
+            "headerParameters": {
+              "parameters": [
+                {
+                  "name": "Content-Type",
+                  "value": "application/json"
+                }
+              ]
             },
-            "OpenRouter Chat Model": {
-                "ai_languageModel": [
-                    [
-                        {
-                            "node": "AI Agent",
-                            "type": "ai_languageModel",
-                            "index": 0
-                        }
-                    ]
-                ]
+            "sendBody": true,
+            "specifyBody": "=json",
+            "bodyParameters": {
+              "parameters": [
+                {}
+              ]
             },
-            "Simple Memory": {
-                "ai_memory": [
-                    [
-                        {
-                            "node": "AI Agent",
-                            "type": "ai_memory",
-                            "index": 0
-                        }
-                    ]
-                ]
+            "jsonBody": "={\n  \"model\": \"deepseek/deepseek-r1:free\",\n  \"temperature\": 0.7,\n  \"messages\": [\n    {\n      \"role\": \"system\",\n      \"content\": \"你是婚宴邀請函產生專家。只生成邀請函的實際內容，不要包含任何使用說明、建議或指導。不要使用方括號標記需要替換的內容。直接使用提供的資訊填入邀請函。不要在回應中提及你是AI或任何元說明。\"\n    },\n    {\n      \"role\": \"user\",\n      \"content\": \"請為以下賓客生成一封完全獨特的婚禮邀請函，不要套用固定模板：\n\n新人：{{ $('合併資料流').item.json.bride_name }} & {{ $('合併資料流').item.json.groom_name }}\n收件人：{{ $('合併資料流').item.json.name }}\n關係：{{ $('合併資料流').item.json.relationship }}\n小故事：{{ $('合併資料流').item.json.favorite_memory }}\n婚禮日期：{{ $('合併資料流').item.json.wedding_date }}\n星期幾：{{ $('合併資料流').item.json.week_day }}\n時間：{{ $('合併資料流').item.json.time }}\n地點名稱：{{ $('合併資料流').item.json.venue_name }}\n地點地址：{{ $('合併資料流').item.json.venue_address }}\n\n請根據關係和小故事創建真正獨特的內容，可以嘗試不同的開場白、結構、表達方式，讓每封邀請函都獨一無二。可以選擇性地加入溫馨、幽默或感性的元素，以反映賓客與新人的特殊關係，不用太詩情畫意，盡量簡單明瞭就好，年齡的因素也要考慮進去，若是較年長的長輩，請使用較尊敬或傳統的語氣，不用太矯情，繁體中文。\"\n    }\n  ],\n  \"temperature\": 0.7\n}",
+            "options": {}
+          },
+          "type": "n8n-nodes-base.httpRequest",
+          "typeVersion": 4.2,
+          "position": [
+            1080,
+            200
+          ],
+          "id": "40541fe9-d37e-4b6b-b9df-9b0a923b3a8a",
+          "name": "中文內容生成",
+          "credentials": {
+            "openRouterApi": {
+              "id": "GWbBdrAWpARJgY9C",
+              "name": "OpenRouter account"
             }
+          }
         },
-        "settings": {
-            "executionOrder": "v1"
+        {
+          "parameters": {
+            "amount": 10
+          },
+          "type": "n8n-nodes-base.wait",
+          "typeVersion": 1.1,
+          "position": [
+            1300,
+            0
+          ],
+          "id": "46b65e47-afde-49d3-a05f-bcf57e367a78",
+          "name": "等待",
+          "webhookId": "dbd679cd-cd47-4fe6-8f1b-d7a3db4f341d"
         },
-        "staticData": null,
-        "meta": {
-            "templateCredsSetupCompleted": true
+        {
+          "parameters": {
+            "amount": 10
+          },
+          "type": "n8n-nodes-base.wait",
+          "typeVersion": 1.1,
+          "position": [
+            1300,
+            200
+          ],
+          "id": "ba5f34af-cdfd-4800-8c92-4a7f279f32e5",
+          "name": "等待1",
+          "webhookId": "dbd679cd-cd47-4fe6-8f1b-d7a3db4f341d"
         },
-        "pinData": {},
-        "versionId": "55b73e1a-da30-40af-beaa-73122983d6dc",
-        "triggerCount": 0,
-        "tags": []
-    },
-    {
-        "createdAt": "2025-04-18T20:30:29.890Z",
-        "updatedAt": "2025-04-23T17:08:10.000Z",
-        "id": "YxHB45QpONoAudHe",
-        "name": "Wedding Invites",
-        "active": false,
-        "nodes": [
-            {
-                "parameters": {
-                    "rule": {
-                        "interval": [
-                            {
-                                "triggerAtHour": 11
-                            }
-                        ]
-                    }
-                },
-                "type": "n8n-nodes-base.scheduleTrigger",
-                "typeVersion": 1.2,
-                "position": [
-                    -240,
-                    100
-                ],
-                "id": "a923b449-55ed-4e16-9e28-b2268b610835",
-                "name": "Schedule Trigger"
-            },
-            {
-                "parameters": {
-                    "fileSelector": "/shared/couple.csv",
-                    "options": {}
-                },
-                "type": "n8n-nodes-base.readWriteFile",
-                "typeVersion": 1,
-                "position": [
-                    -20,
-                    0
-                ],
-                "id": "712aed13-bc52-401f-91b2-a2faca5846b1",
-                "name": "Read/Write Files from Disk"
-            },
-            {
-                "parameters": {
-                    "options": {}
-                },
-                "type": "n8n-nodes-base.extractFromFile",
-                "typeVersion": 1,
-                "position": [
-                    200,
-                    0
-                ],
-                "id": "69bb2a5f-886c-4d57-9dd0-d4ea3b25ff90",
-                "name": "Extract from File"
-            },
-            {
-                "parameters": {
-                    "fileSelector": "/shared/guests.csv",
-                    "options": {}
-                },
-                "type": "n8n-nodes-base.readWriteFile",
-                "typeVersion": 1,
-                "position": [
-                    -20,
-                    200
-                ],
-                "id": "6dbba935-af87-4564-8404-88aadeb92d21",
-                "name": "Read/Write Files from Disk1"
-            },
-            {
-                "parameters": {
-                    "options": {}
-                },
-                "type": "n8n-nodes-base.extractFromFile",
-                "typeVersion": 1,
-                "position": [
-                    200,
-                    200
-                ],
-                "id": "46ba4cdf-a043-4622-8609-341735922bfd",
-                "name": "Extract from File1"
-            },
-            {
-                "parameters": {
-                    "mode": "combine",
-                    "combineBy": "combineAll",
-                    "options": {}
-                },
-                "type": "n8n-nodes-base.merge",
-                "typeVersion": 3.1,
-                "position": [
-                    420,
-                    100
-                ],
-                "id": "96cfc0c8-adc8-4b96-a35b-7f112878325d",
-                "name": "Merge"
-            },
-            {
-                "parameters": {
-                    "method": "POST",
-                    "url": "https://openrouter.ai/api/v1/chat/completions",
-                    "authentication": "predefinedCredentialType",
-                    "nodeCredentialType": "openRouterApi",
-                    "sendHeaders": true,
-                    "headerParameters": {
-                        "parameters": [
-                            {
-                                "name": "Content-Type",
-                                "value": "application/json"
-                            }
-                        ]
-                    },
-                    "sendBody": true,
-                    "specifyBody": "=json",
-                    "bodyParameters": {
-                        "parameters": [
-                            {}
-                        ]
-                    },
-                    "jsonBody": "={\n  \"model\": \"deepseek/deepseek-r1:free\",\n  \"temperature\": 0.7,\n  \"messages\": [\n    {\n      \"role\": \"system\",\n      \"content\": \"你是婚宴邀請函產生專家。只生成邀請函的實際內容，不要包含任何使用說明、建議或指導。不要使用方括號標記需要替換的內容。直接使用提供的資訊填入邀請函。不要在回應中提及你是AI或任何元說明。\"\n    },\n    {\n      \"role\": \"user\",\n      \"content\": \"請為以下賓客生成一封完全獨特的婚禮邀請函，不要套用固定模板：\\n\\n新人：{{ $('Merge').item.json.bride_name }} & {{ $('Merge').item.json.groom_name }}\\n收件人：{{ $('Merge').item.json.name }}\\n關係：{{ $('Merge').item.json.relationship }}\\n小故事：{{ $('Merge').item.json.favorite_memory }}\\n婚禮日期：{{ $('Merge').item.json.wedding_date }}\\n星期幾：{{ $('Merge').item.json.week_day }}\\n時間：{{ $('Merge').item.json.time }}\\n地點名稱：{{ $('Merge').item.json.venue_name }}\\n地點地址：{{ $('Merge').item.json.venue_address }}\\n\\n請根據關係和小故事創建真正獨特的內容，可以嘗試不同的開場白、結構、表達方式，讓每封邀請函都獨一無二。可以選擇性地加入溫馨、幽默或感性的元素，以反映賓客與新人的特殊關係，不用太詩情畫意，盡量簡單明瞭就好，年齡的因素也要考慮進去，若是較年長的長輩，請使用較尊敬或傳統的語氣，不用太矯情，繁體中文。\"\n    }\n  ],\n  \"temperature\": 0.7\n}",
-                    "options": {}
-                },
-                "type": "n8n-nodes-base.httpRequest",
-                "typeVersion": 4.2,
-                "position": [
-                    1080,
-                    200
-                ],
-                "id": "40541fe9-d37e-4b6b-b9df-9b0a923b3a8a",
-                "name": "HTTP Request",
-                "credentials": {
-                    "openRouterApi": {
-                        "id": "GWbBdrAWpARJgY9C",
-                        "name": "OpenRouter account"
-                    }
+        {
+          "parameters": {
+            "assignments": {
+              "assignments": [
+                {
+                  "id": "05d01cdc-9369-4164-a04a-41e1dc6d38e9",
+                  "name": "processedContent",
+                  "value": "={{$node[\"英文內容生成\"].json.choices[0].message.content}}",
+                  "type": "string"
                 }
+              ]
             },
-            {
-                "parameters": {
-                    "sendTo": "={{$node[\"Merge\"].json.email}} ",
-                    "subject": "=【{{$node[\"Merge\"].json.bride_name}}＆{{$node[\"Merge\"].json.groom_name}}】專屬家宴邀請函 ",
-                    "message": "=<div style=\"font-family: 'Microsoft JhengHei', 'PingFang TC', 'Apple LiGothic Medium', sans-serif; max-width: 600px; margin: 0 auto; line-height: 1.6; color: #333; text-align: center;\">\n  <h2 style=\"color: #e86b6b; margin-bottom: 20px;\">親愛的{{ $('Merge').item.json.name }} ：</h2>\n  \n  <div style=\"text-align: left;\">\n    <p style=\"margin: 12px 0; font-size: 16px;\">嘿！我們要結婚了！</p>\n    \n    <p style=\"margin: 12px 0; font-size: 16px;\">是的，就是我們，{{$node[\"Merge\"].json.bride_name}} 和 {{$node[\"Merge\"].json.groom_name}}！</p>\n    \n    <p style=\"margin: 12px 0; font-size: 16px;\">{{$node[\"HTTP Request\"].json.choices[0].message.content}}</p>\n  </div>\n  \n  <div style=\"margin: 25px 0; border-left: 4px solid #e86b6b; padding-left: 15px; text-align: left;\">\n    <h3 style=\"color: #e86b6b; margin-top: 0; margin-bottom: 15px; text-align: center;\">💌【婚禮資訊】</h3>\n    \n    <p style=\"margin: 10px 0; font-size: 16px;\">📅 <strong>日期：</strong>{{$node[\"Merge\"].json.wedding_date}}（星期{{$node[\"Merge\"].json.week_day}}）</p>\n    \n    <p style=\"margin: 10px 0; font-size: 16px;\">🕠 <strong>時間：</strong>{{$node[\"Merge\"].json.time}}</p>\n    \n    <p style=\"margin: 10px 0; font-size: 16px;\">🏛 <strong>地點：</strong>{{$node[\"Merge\"].json.venue_name}}</p>\n    \n    <p style=\"margin: 10px 0; font-size: 16px;\">📍 <strong>地址：</strong>{{$node[\"Merge\"].json.venue_address}}</p>\n  </div>\n  \n<div style=\"background-color: #f0f8ff; padding: 20px; border-radius: 10px; font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;\">\n    <h3 style=\"color: #5b9bd5; text-align: center; margin-top: 0; margin-bottom: 20px;\">🔔【敬請回覆】</h3>\n\n    <p style=\"margin: 0; font-size: 16px; line-height: 1.75; color: #333;\">\n        為了方便我們統計人數和安排，請你在 <strong style=\"color: #d9534f;\">2025-9-10</strong> 前，\n        透過\n        <a href=\"http://localhost:5678/form/cf6629ba-a521-4f29-bf3a-c768951c1236?電子郵件={{ $('Merge').item.json.email }}&姓名={{ $('Merge').item.json.name }}\"\n           style=\"background-color: #5b9bd5; color: white; padding: 6px 12px; text-decoration: none; border-radius: 5px; font-weight: bold; display: inline-block;\">\n           點擊這裡回覆參加情況\n        </a>\n        告訴我們你是否能來參加，讓我們知道可以期待看到你喔！\n    </p>\n</div>\n\n  \n  <div style=\"text-align: left;\">\n    <p style=\"margin: 12px 0; font-size: 16px;\">你的祝福與蒞臨，將是給我們最棒的結婚禮物。</p>\n    \n    <p style=\"margin: 12px 0; font-size: 16px;\">期待在婚禮上見到你，聊聊近況，抱一個！</p>\n    \n    <p style=\"margin: 12px 0; font-size: 16px;\">溫馨的祝福，</p>\n  </div>\n</div>",
-                    "options": {}
-                },
-                "type": "n8n-nodes-base.gmail",
-                "typeVersion": 2.1,
-                "position": [
-                    1740,
-                    200
-                ],
-                "id": "8c5cec63-8ef8-46fb-b24c-6cfe450c7a64",
-                "name": "Gmail",
-                "webhookId": "47b6df8e-2422-477b-941e-16ec370ee779",
-                "credentials": {
-                    "gmailOAuth2": {
-                        "id": "3kASMhO8mJHcZQZz",
-                        "name": "Gmail account"
-                    }
+            "includeOtherFields": true,
+            "options": {}
+          },
+          "type": "n8n-nodes-base.set",
+          "typeVersion": 3.4,
+          "position": [
+            1520,
+            0
+          ],
+          "id": "48d12a3f-a19c-4b4a-873e-8ba3a870bbcb",
+          "name": "變數整理"
+        },
+        {
+          "parameters": {
+            "assignments": {
+              "assignments": [
+                {
+                  "id": "fe2b31fe-2f4f-4aae-b409-119bb37348cd",
+                  "name": "processedContent",
+                  "value": "={{$node[\"中文內容生成\"].json.choices[0].message.content}}",
+                  "type": "string"
                 }
+              ]
             },
-            {
-                "parameters": {
-                    "mode": "raw",
-                    "jsonOutput": "={\n  \"bride_name\": \"小美\",\n  \"groom_name\": \"張志明\",\n  \"guest_name\": \"王小明\",\n  \"relation\": \"大學同學\",\n  \"story\": \"一起去日本背包旅行時，迷路卻意外吃到超好吃的拉麵\",\n  \"wedding_date\": \"2025-06-15\",\n  \"week_day\": \"日\",\n  \"time\": \"下午 5:30\",\n  \"venue_name\": \"晶華酒店 3 樓宴會廳\",\n  \"venue_address\": \"台北市中山區中山北路二段39巷3號\",\n  \"rsvp\": \"請回覆 0912-345-678 或 email@example.com\",\n  \"rsvp_deadline\": \"2025-05-31\"\n}\n",
-                    "options": {}
-                },
-                "type": "n8n-nodes-base.set",
-                "typeVersion": 3.4,
-                "position": [
-                    860,
-                    200
-                ],
-                "id": "05176d6c-b56b-42d4-b66b-f82cd9715448",
-                "name": "Edit Fields1"
-            },
-            {
-                "parameters": {
-                    "conditions": {
-                        "options": {
-                            "caseSensitive": true,
-                            "leftValue": "",
-                            "typeValidation": "loose",
-                            "version": 2
-                        },
-                        "conditions": [
-                            {
-                                "id": "5b6d6f36-742b-44cb-b6e5-07b133d87024",
-                                "leftValue": "={{$node[\"Merge\"].json.language}}",
-                                "rightValue": "=en",
-                                "operator": {
-                                    "type": "string",
-                                    "operation": "equals"
-                                }
-                            }
-                        ],
-                        "combinator": "and"
-                    },
-                    "looseTypeValidation": true,
-                    "options": {}
-                },
-                "type": "n8n-nodes-base.if",
-                "typeVersion": 2.2,
-                "position": [
-                    640,
-                    100
-                ],
-                "id": "9e683810-bfd4-49c6-86df-ad214fac52a8",
-                "name": "If"
-            },
-            {
-                "parameters": {
-                    "mode": "raw",
-                    "jsonOutput": "={\n  \"role\": \"user\",\n  \"content\": \"Please write a warm and personal wedding invitation for {{ $('Merge').item.json.name }}.\\nBride: {{ $('Merge').item.json.bride_name }}, Groom: {{ $('Merge').item.json.groom_name }}\\nRelationship:{{ $('Merge').item.json.relationship }} \\nStory: {{ $('Merge').item.json.favorite_memory }}\"\n}",
-                    "options": {}
-                },
-                "type": "n8n-nodes-base.set",
-                "typeVersion": 3.4,
-                "position": [
-                    860,
-                    0
-                ],
-                "id": "a54c9d84-98f6-4ffd-9ea1-15251f15f915",
-                "name": "Edit Fields"
-            },
-            {
-                "parameters": {
-                    "method": "POST",
-                    "url": "https://openrouter.ai/api/v1/chat/completions",
-                    "authentication": "predefinedCredentialType",
-                    "nodeCredentialType": "openRouterApi",
-                    "sendHeaders": true,
-                    "headerParameters": {
-                        "parameters": [
-                            {
-                                "name": "Content-Type",
-                                "value": "application/json"
-                            }
-                        ]
-                    },
-                    "sendBody": true,
-                    "specifyBody": "json",
-                    "jsonBody": "={\n  \"model\": \"google/gemini-2.5-pro-exp-03-25:free\",\n  \"messages\": [\n    {\n      \"role\": \"system\",\n      \"content\": \"You are a wedding invitation specialist. Generate only the actual content of the invitation without including any instructions, suggestions, or guidance. Do not use brackets to mark content that needs to be replaced. Directly fill in the invitation with the provided information. Do not mention that you are an AI or include any meta-explanations in your response. For each guest, create a completely unique invitation - don't use a fixed template. Instead, make each letter have its own unique expression, structure, and language style. Use the guest's relationship with the couple and their shared memories to create truly personalized content.\"\n    },\n    {\n      \"role\": \"user\",\n      \"content\": \"Please generate a completely unique wedding invitation letter for the following guest. Do not use any fixed templates.Please write it in English.：\\n\\n新人：{{ $('Merge').item.json.bride_name_en }} &{{ $('Merge').item.json.groom_name_en }}\\n收件人：{{ $('Merge').item.json.name }}\\n關係：{{ $('Merge').item.json.relationship }}\\n小故事：{{ $('Merge').item.json.favorite_memory }}\\n婚禮日期：{{ $('Merge').item.json.wedding_date_en }}\\n星期幾：{{ $('Merge').item.json.week_day_en }}\\n時間：{{ $('Merge').item.json.time_en }}\\n地點名稱：{{ $('Merge').item.json.venue_name_en }}\\n地點地址：{{ $('Merge').item.json.venue_address_en }}\\n\\nCreate truly unique content based on the relationship and shared stories. Try different openings, structures, and expressions to make each invitation one-of-a-kind. Feel free to incorporate warm, humorous, or emotional elements that reflect the special relationship between the guest and the couple.\"\n    }\n  ],\n  \"temperature\": 0.9\n}",
-                    "options": {}
-                },
-                "type": "n8n-nodes-base.httpRequest",
-                "typeVersion": 4.2,
-                "position": [
-                    1080,
-                    0
-                ],
-                "id": "9764c007-7dae-4463-86c6-f9b15abcfa24",
-                "name": "HTTP Request1",
-                "credentials": {
-                    "openRouterApi": {
-                        "id": "GWbBdrAWpARJgY9C",
-                        "name": "OpenRouter account"
-                    }
-                }
-            },
-            {
-                "parameters": {
-                    "sendTo": "ss11144250@gmail.com",
-                    "subject": "=【{{ $('Merge').item.json.bride_name_en }}＆{{ $('Merge').item.json.groom_name_en }}】Exclusive Family Banquet Invitation ",
-                    "message": "=<div style=\"font-family: 'Arial', 'Helvetica', sans-serif; max-width: 600px; margin: 0 auto; line-height: 1.6; color: #333; text-align: center;\">\n  <h2 style=\"color: #e86b6b; margin-bottom: 20px;\">Dear {{ $('Merge').item.json.name }}:</h2>\n  \n  <div style=\"text-align: left;\">\n    <p style=\"margin: 12px 0; font-size: 16px;\">Hey! We're getting married!</p>\n    \n    <p style=\"margin: 12px 0; font-size: 16px;\">Yes, it's us, {{$node[\"Merge\"].json.bride_name_en}} and {{$node[\"Merge\"].json.groom_name_en}}!</p>\n    \n    <p style=\"margin: 12px 0; font-size: 16px;\">{{$node[\"HTTP Request1\"].json.choices[0].message.content}}</p>\n  </div>\n  \n  <div style=\"margin: 25px 0; border-left: 4px solid #e86b6b; padding-left: 15px; text-align: left;\">\n    <h3 style=\"color: #e86b6b; margin-top: 0; margin-bottom: 15px; text-align: center;\">💌【Wedding Details】</h3>\n    \n    <p style=\"margin: 10px 0; font-size: 16px;\">📅 <strong>Date:</strong> {{$node[\"Merge\"].json.wedding_date_en}} ({{$node[\"Merge\"].json.week_day_en}})</p>\n    \n    <p style=\"margin: 10px 0; font-size: 16px;\">🕠 <strong>Time:</strong> {{$node[\"Merge\"].json.time_en}}</p>\n    \n    <p style=\"margin: 10px 0; font-size: 16px;\">🏛 <strong>Venue:</strong> {{$node[\"Merge\"].json.venue_name_en}}</p>\n    \n    <p style=\"margin: 10px 0; font-size: 16px;\">📍 <strong>Address:</strong> {{$node[\"Merge\"].json.venue_address_en}}</p>\n  </div>\n  \n  <div style=\"background-color: #f0f8ff; padding: 20px; border-radius: 10px; font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; border-left: 4px solid #5b9bd5;\">\n    <h3 style=\"color: #5b9bd5; text-align: center; margin-top: 0; margin-bottom: 20px;\">🔔【Please RSVP】</h3>\n\n    <p style=\"margin: 0; font-size: 16px; line-height: 1.75; color: #333;\">\n        To help us with planning, please let us know if you can attend by \n        <strong style=\"color: #d9534f;\">{{$node[\"Merge\"].json.rsvp_deadline_en}}</strong> via\n        <a href=\"http://localhost:5678/form/cf6629ba-a521-4f29-bf3a-c768951c1236?電子郵件={{ $('Merge').item.json.email }}&姓名={{ $('Merge').item.json.name }}\"\n           style=\"background-color: #5b9bd5; color: white; padding: 6px 12px; text-decoration: none; border-radius: 5px; font-weight: bold; display: inline-block;\">\n           Click here to RSVP\n        </a>.\n        We're looking forward to seeing you there!\n    </p>\n</div>\n\n  \n  <div style=\"text-align: left;\">\n    <p style=\"margin: 12px 0; font-size: 16px;\">Your blessing and presence would be the best wedding gift we could receive.</p>\n    \n    <p style=\"margin: 12px 0; font-size: 16px;\">We can't wait to see you at the wedding, catch up, and share a hug!</p>\n    \n    <p style=\"margin: 12px 0; font-size: 16px;\">With warm wishes,</p>\n    \n    <p style=\"margin: 12px 0; text-align: right; font-size: 16px;\"><strong>{{$node[\"Merge\"].json.bride_name_en}} & {{$node[\"Merge\"].json.groom_name_en}}</strong></p>\n  </div>\n</div>",
-                    "options": {}
-                },
-                "type": "n8n-nodes-base.gmail",
-                "typeVersion": 2.1,
-                "position": [
-                    1740,
-                    0
-                ],
-                "id": "697690e1-9cdc-4109-b546-c928db590471",
-                "name": "Gmail1",
-                "webhookId": "5ca0d0db-e2e1-4158-a98e-907f3bf71298",
-                "credentials": {
-                    "gmailOAuth2": {
-                        "id": "3kASMhO8mJHcZQZz",
-                        "name": "Gmail account"
-                    }
-                }
-            },
-            {
-                "parameters": {
-                    "assignments": {
-                        "assignments": [
-                            {
-                                "id": "05d01cdc-9369-4164-a04a-41e1dc6d38e9",
-                                "name": "processedContent",
-                                "value": "={{$node[\"HTTP Request1\"].json.choices[0].message.content}}",
-                                "type": "string"
-                            }
-                        ]
-                    },
-                    "includeOtherFields": true,
-                    "options": {}
-                },
-                "type": "n8n-nodes-base.set",
-                "typeVersion": 3.4,
-                "position": [
-                    1520,
-                    0
-                ],
-                "id": "48d12a3f-a19c-4b4a-873e-8ba3a870bbcb",
-                "name": "Edit Fields2"
-            },
-            {
-                "parameters": {
-                    "assignments": {
-                        "assignments": [
-                            {
-                                "id": "fe2b31fe-2f4f-4aae-b409-119bb37348cd",
-                                "name": "processedContent",
-                                "value": "={{$node[\"HTTP Request\"].json.choices[0].message.content}}",
-                                "type": "string"
-                            }
-                        ]
-                    },
-                    "options": {}
-                },
-                "type": "n8n-nodes-base.set",
-                "typeVersion": 3.4,
-                "position": [
-                    1520,
-                    200
-                ],
-                "id": "7a660706-c15b-4890-bb39-5bffc5ad431f",
-                "name": "Edit Fields3"
-            },
-            {
-                "parameters": {
-                    "amount": 10
-                },
-                "type": "n8n-nodes-base.wait",
-                "typeVersion": 1.1,
-                "position": [
-                    1300,
-                    0
-                ],
-                "id": "46b65e47-afde-49d3-a05f-bcf57e367a78",
-                "name": "Wait",
-                "webhookId": "dbd679cd-cd47-4fe6-8f1b-d7a3db4f341d"
-            },
-            {
-                "parameters": {
-                    "amount": 25
-                },
-                "type": "n8n-nodes-base.wait",
-                "typeVersion": 1.1,
-                "position": [
-                    1300,
-                    200
-                ],
-                "id": "ba5f34af-cdfd-4800-8c92-4a7f279f32e5",
-                "name": "Wait1",
-                "webhookId": "dbd679cd-cd47-4fe6-8f1b-d7a3db4f341d"
+            "options": {}
+          },
+          "type": "n8n-nodes-base.set",
+          "typeVersion": 3.4,
+          "position": [
+            1520,
+            200
+          ],
+          "id": "7a660706-c15b-4890-bb39-5bffc5ad431f",
+          "name": "變數整理1"
+        },
+        {
+          "parameters": {
+            "sendTo": "ss11144250@gmail.com",
+            "subject": "=[{{ $('合併資料流').item.json.bride_name_en }}＆{{ $('合併資料流').item.json.groom_name_en }}] Exclusive Family Banquet Invitation ",
+            "message": "=<div style=\"font-family: 'Arial', 'Helvetica', sans-serif; max-width: 600px; margin: 0 auto; line-height: 1.6; color: #333; text-align: center;\">\n  <h2 style=\"color: #e86b6b; margin-bottom: 20px;\">Dear {{ $('合併資料流').item.json.name }}:</h2>\n  \n  <div style=\"text-align: left;\">\n    <p style=\"margin: 12px 0; font-size: 16px;\">Hey! We're getting married!</p>\n    \n    <p style=\"margin: 12px 0; font-size: 16px;\">Yes, it's us, {{$node[\"合併資料流\"].json.bride_name_en}} and {{$node[\"合併資料流\"].json.groom_name_en}}!</p>\n    \n    <p style=\"margin: 12px 0; font-size: 16px;\">{{$node[\"英文內容生成\"].json.choices[0].message.content}}</p>\n  </div>\n  \n  <div style=\"margin: 25px 0; border-left: 4px solid #e86b6b; padding-left: 15px; text-align: left;\">\n    <h3 style=\"color: #e86b6b; margin-top: 0; margin-bottom: 15px; text-align: center;\">💌【Wedding Details】</h3>\n    \n    <p style=\"margin: 10px 0; font-size: 16px;\">📅 <strong>Date:</strong> {{$node[\"合併資料流\"].json.wedding_date_en}} ({{$node[\"合併資料流\"].json.week_day_en}})</p>\n    \n    <p style=\"margin: 10px 0; font-size: 16px;\">🕠 <strong>Time:</strong> {{$node[\"合併資料流\"].json.time_en}}</p>\n    \n    <p style=\"margin: 10px 0; font-size: 16px;\">🏛 <strong>Venue:</strong> {{$node[\"合併資料流\"].json.venue_name_en}}</p>\n    \n    <p style=\"margin: 10px 0; font-size: 16px;\">📍 <strong>Address:</strong> {{$node[\"合併資料流\"].json.venue_address_en}}</p>\n  </div>\n  \n  <div style=\"background-color: #f0f8ff; padding: 20px; border-radius: 10px; font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; border-left: 4px solid #5b9bd5;\">\n    <h3 style=\"color: #5b9bd5; text-align: center; margin-top: 0; margin-bottom: 20px;\">🔔【Please RSVP】</h3>\n\n    <p style=\"margin: 0; font-size: 16px; line-height: 1.75; color: #333;\">\n        To help us with planning, please let us know if you can attend by \n        <strong style=\"color: #d9534f;\">{{$node[\"合併資料流\"].json.rsvp_deadline_en}}</strong> via\n        <a href=\"http://localhost:5678/form/cf6629ba-a521-4f29-bf3a-c768951c1236?電子郵件%20Email={{ $('合併資料流').item.json.email }}&姓名%20Name={{ $('合併資料流').item.json.name }}\"\n           style=\"background-color: #5b9bd5; color: white; padding: 6px 12px; text-decoration: none; border-radius: 5px; font-weight: bold; display: inline-block;\">\n           Click here to RSVP\n        </a>.\n        We're looking forward to seeing you there!\n    </p>\n</div>\n\n  \n  <div style=\"text-align: left;\">\n    <p style=\"margin: 12px 0; font-size: 16px;\">Your blessing and presence would be the best wedding gift we could receive.</p>\n    \n    <p style=\"margin: 12px 0; font-size: 16px;\">We can't wait to see you at the wedding, catch up, and share a hug!</p>\n    \n    <p style=\"margin: 12px 0; font-size: 16px;\">With warm wishes,</p>\n    \n    <p style=\"margin: 12px 0; text-align: right; font-size: 16px;\"><strong>{{$node[\"合併資料流\"].json.bride_name_en}} & {{$node[\"合併資料流\"].json.groom_name_en}}</strong></p>\n  </div>\n</div>",
+            "options": {}
+          },
+          "type": "n8n-nodes-base.gmail",
+          "typeVersion": 2.1,
+          "position": [
+            1740,
+            0
+          ],
+          "id": "697690e1-9cdc-4109-b546-c928db590471",
+          "name": "信件寄送",
+          "webhookId": "5ca0d0db-e2e1-4158-a98e-907f3bf71298",
+          "credentials": {
+            "gmailOAuth2": {
+              "id": "nxjIgHlt8ajppZs0",
+              "name": "Gmail account"
             }
-        ],
-        "connections": {
-            "Schedule Trigger": {
-                "main": [
-                    [
-                        {
-                            "node": "Read/Write Files from Disk",
-                            "type": "main",
-                            "index": 0
-                        },
-                        {
-                            "node": "Read/Write Files from Disk1",
-                            "type": "main",
-                            "index": 0
-                        }
-                    ]
-                ]
-            },
-            "Read/Write Files from Disk": {
-                "main": [
-                    [
-                        {
-                            "node": "Extract from File",
-                            "type": "main",
-                            "index": 0
-                        }
-                    ]
-                ]
-            },
-            "Extract from File": {
-                "main": [
-                    [
-                        {
-                            "node": "Merge",
-                            "type": "main",
-                            "index": 0
-                        }
-                    ]
-                ]
-            },
-            "Read/Write Files from Disk1": {
-                "main": [
-                    [
-                        {
-                            "node": "Extract from File1",
-                            "type": "main",
-                            "index": 0
-                        }
-                    ]
-                ]
-            },
-            "Extract from File1": {
-                "main": [
-                    [
-                        {
-                            "node": "Merge",
-                            "type": "main",
-                            "index": 1
-                        }
-                    ]
-                ]
-            },
-            "Merge": {
-                "main": [
-                    [
-                        {
-                            "node": "If",
-                            "type": "main",
-                            "index": 0
-                        }
-                    ]
-                ]
-            },
-            "HTTP Request": {
-                "main": [
-                    [
-                        {
-                            "node": "Wait1",
-                            "type": "main",
-                            "index": 0
-                        }
-                    ]
-                ]
-            },
-            "Edit Fields1": {
-                "main": [
-                    [
-                        {
-                            "node": "HTTP Request",
-                            "type": "main",
-                            "index": 0
-                        }
-                    ]
-                ]
-            },
-            "If": {
-                "main": [
-                    [
-                        {
-                            "node": "Edit Fields",
-                            "type": "main",
-                            "index": 0
-                        }
-                    ],
-                    [
-                        {
-                            "node": "Edit Fields1",
-                            "type": "main",
-                            "index": 0
-                        }
-                    ]
-                ]
-            },
-            "Edit Fields": {
-                "main": [
-                    [
-                        {
-                            "node": "HTTP Request1",
-                            "type": "main",
-                            "index": 0
-                        }
-                    ]
-                ]
-            },
-            "HTTP Request1": {
-                "main": [
-                    [
-                        {
-                            "node": "Wait",
-                            "type": "main",
-                            "index": 0
-                        }
-                    ]
-                ]
-            },
-            "Edit Fields2": {
-                "main": [
-                    [
-                        {
-                            "node": "Gmail1",
-                            "type": "main",
-                            "index": 0
-                        }
-                    ]
-                ]
-            },
-            "Edit Fields3": {
-                "main": [
-                    [
-                        {
-                            "node": "Gmail",
-                            "type": "main",
-                            "index": 0
-                        }
-                    ]
-                ]
-            },
-            "Wait": {
-                "main": [
-                    [
-                        {
-                            "node": "Edit Fields2",
-                            "type": "main",
-                            "index": 0
-                        }
-                    ]
-                ]
-            },
-            "Wait1": {
-                "main": [
-                    [
-                        {
-                            "node": "Edit Fields3",
-                            "type": "main",
-                            "index": 0
-                        }
-                    ]
-                ]
+          }
+        },
+        {
+          "parameters": {
+            "sendTo": "={{$node[\"合併資料流\"].json.email}} ",
+            "subject": "=【{{$node[\"合併資料流\"].json.bride_name}}＆{{$node[\"合併資料流\"].json.groom_name}}】專屬家宴邀請函 ",
+            "message": "=<div style=\"font-family: 'Microsoft JhengHei', 'PingFang TC', 'Apple LiGothic Medium', sans-serif; max-width: 600px; margin: 0 auto; line-height: 1.6; color: #333; text-align: center;\">\n  <h2 style=\"color: #e86b6b; margin-bottom: 20px;\">親愛的 {{ $('合併資料流').item.json.name }}：</h2>\n  \n  <div style=\"text-align: left;\">\n    <p style=\"margin: 12px 0; font-size: 16px;\">嘿！我們要結婚了！</p>\n    \n    <p style=\"margin: 12px 0; font-size: 16px;\">是的，就是我們，{{$node[\"合併資料流\"].json.bride_name}} 和 {{$node[\"合併資料流\"].json.groom_name}}！</p>\n    \n    <p style=\"margin: 12px 0; font-size: 16px;\">{{$node[\"中文內容生成\"].json.choices[0].message.content}}</p>\n  </div>\n  \n  <div style=\"margin: 25px 0; border-left: 4px solid #e86b6b; padding-left: 15px; text-align: left;\">\n    <h3 style=\"color: #e86b6b; margin-top: 0; margin-bottom: 15px; text-align: center;\">💌【婚禮資訊】</h3>\n    \n    <p style=\"margin: 10px 0; font-size: 16px;\">📅 <strong>日期：</strong>{{$node[\"合併資料流\"].json.wedding_date}}（星期{{$node[\"合併資料流\"].json.week_day}}）</p>\n    \n    <p style=\"margin: 10px 0; font-size: 16px;\">🕠 <strong>時間：</strong>{{$node[\"合併資料流\"].json.time}}</p>\n    \n    <p style=\"margin: 10px 0; font-size: 16px;\">🏛 <strong>地點：</strong>{{$node[\"合併資料流\"].json.venue_name}}</p>\n    \n    <p style=\"margin: 10px 0; font-size: 16px;\">📍 <strong>地址：</strong>{{$node[\"合併資料流\"].json.venue_address}}</p>\n  </div>\n  \n<div style=\"background-color: #f0f8ff; padding: 20px; border-radius: 10px; font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;\">\n    <h3 style=\"color: #5b9bd5; text-align: center; margin-top: 0; margin-bottom: 20px;\">🔔【敬請回覆】</h3>\n\n    <p style=\"margin: 0; font-size: 16px; line-height: 1.75; color: #333;\">\n        為了方便我們統計人數和安排，請你在 <strong style=\"color: #d9534f;\">2025-9-10</strong> 前，\n        透過\n        <a href=\"http://localhost:5678/form/cf6629ba-a521-4f29-bf3a-c768951c1236?電子郵件%20Email={{ $('合併資料流').item.json.email }}&姓名%20Name={{ $('合併資料流').item.json.name }}\"\n           style=\"background-color: #5b9bd5; color: white; padding: 6px 12px; text-decoration: none; border-radius: 5px; font-weight: bold; display: inline-block;\">\n           點擊這裡\n        </a>\n        告訴我們你是否能來參加，讓我們知道可以期待看到你喔！\n    </p>\n</div>\n\n  \n  <div style=\"text-align: left;\">\n    <p style=\"margin: 12px 0; font-size: 16px;\">你的祝福與蒞臨，將是給我們最棒的結婚禮物。</p>\n    \n    <p style=\"margin: 12px 0; font-size: 16px;\">期待在婚禮上見到你，聊聊近況，抱一個！</p>\n    \n    <p style=\"margin: 12px 0; font-size: 16px;\">溫馨的祝福，</p>\n<p style=\\\"text-align: right; font-size: 16px;\\\"><strong>{{ $('合併資料流').item.json.bride_name }} & {{ $('合併資料流').item.json.groom_name }} 敬邀</strong></p>\n  </div>\n</div>",
+            "options": {}
+          },
+          "type": "n8n-nodes-base.gmail",
+          "typeVersion": 2.1,
+          "position": [
+            1740,
+            200
+          ],
+          "id": "8c5cec63-8ef8-46fb-b24c-6cfe450c7a64",
+          "name": "信件寄送1",
+          "webhookId": "47b6df8e-2422-477b-941e-16ec370ee779",
+          "credentials": {
+            "gmailOAuth2": {
+              "id": "nxjIgHlt8ajppZs0",
+              "name": "Gmail account"
             }
+          }
         },
-        "settings": {
-            "executionOrder": "v1"
+        {
+          "parameters": {
+            "content": "# RSVP 紀錄",
+            "height": 280,
+            "width": 860,
+            "color": 6
+          },
+          "type": "n8n-nodes-base.stickyNote",
+          "position": [
+            -280,
+            460
+          ],
+          "typeVersion": 1,
+          "id": "c9ee01f7-31cd-4226-b8fe-941ef9a59b17",
+          "name": "Sticky Note3"
         },
-        "staticData": null,
-        "meta": {
-            "templateCredsSetupCompleted": true
+        {
+          "parameters": {},
+          "type": "n8n-nodes-base.noOp",
+          "typeVersion": 1,
+          "position": [
+            400,
+            560
+          ],
+          "id": "ca806642-198d-4a39-bbf7-30b4515fb079",
+          "name": "No Operation, do nothing"
         },
-        "pinData": {},
-        "versionId": "92a3d09f-6839-4f8f-88ed-9ca95db9f3a4",
-        "triggerCount": 0,
-        "tags": []
-    },
-    {
-        "createdAt": "2025-04-21T20:55:22.002Z",
-        "updatedAt": "2025-04-22T11:20:33.000Z",
-        "id": "8epEEjaDtIU96Ar0",
-        "name": "My workflow",
-        "active": false,
-        "nodes": [
-            {
-                "parameters": {
-                    "rule": {
-                        "interval": [
-                            {
-                                "triggerAtHour": 11
-                            }
-                        ]
-                    }
+        {
+          "parameters": {
+            "formTitle": "婚禮回覆 RSVP",
+            "formDescription": "此表單用來填寫婚禮回覆\n",
+            "formFields": {
+              "values": [
+                {
+                  "fieldLabel": "姓名 Name",
+                  "requiredField": true
                 },
-                "type": "n8n-nodes-base.scheduleTrigger",
-                "typeVersion": 1.2,
-                "position": [
-                    -220,
-                    100
-                ],
-                "id": "9cf51f02-6e86-4d77-9c43-10b65f9cb68c",
-                "name": "Schedule Trigger"
-            },
-            {
-                "parameters": {
-                    "fileSelector": "/shared/couple.csv",
-                    "options": {}
+                {
+                  "fieldLabel": "電子郵件 Email",
+                  "fieldType": "email",
+                  "requiredField": true
                 },
-                "type": "n8n-nodes-base.readWriteFile",
-                "typeVersion": 1,
-                "position": [
-                    0,
-                    0
-                ],
-                "id": "37f2034f-3bde-488c-af17-82fadd1ea8d1",
-                "name": "Read/Write Files from Disk"
-            },
-            {
-                "parameters": {
-                    "options": {}
+                {
+                  "fieldLabel": "是否出席 Will you attend?",
+                  "fieldType": "dropdown",
+                  "fieldOptions": {
+                    "values": [
+                      {
+                        "option": "確認出席 Yes"
+                      },
+                      {
+                        "option": "不克出席 No"
+                      }
+                    ]
+                  },
+                  "requiredField": true
                 },
-                "type": "n8n-nodes-base.extractFromFile",
-                "typeVersion": 1,
-                "position": [
-                    220,
-                    0
-                ],
-                "id": "34cdcd6d-32e2-4644-a5c2-98c0515eb4dd",
-                "name": "Extract from File"
-            },
-            {
-                "parameters": {
-                    "fileSelector": "/shared/guests.csv",
-                    "options": {}
+                {
+                  "fieldLabel": "出席人數 Number of guests",
+                  "fieldType": "number",
+                  "requiredField": true
                 },
-                "type": "n8n-nodes-base.readWriteFile",
-                "typeVersion": 1,
-                "position": [
-                    0,
-                    200
-                ],
-                "id": "da1b41ee-bd62-4c37-bdea-e266de4002c3",
-                "name": "Read/Write Files from Disk1"
-            },
-            {
-                "parameters": {
-                    "options": {}
+                {
+                  "fieldLabel": "飲食需求 Dietary restrictions"
                 },
-                "type": "n8n-nodes-base.extractFromFile",
-                "typeVersion": 1,
-                "position": [
-                    220,
-                    200
-                ],
-                "id": "b96b74cf-c93f-4ee8-90f2-787f4cd74451",
-                "name": "Extract from File1"
-            },
-            {
-                "parameters": {
-                    "mode": "combine",
-                    "combineBy": "combineAll",
-                    "options": {}
-                },
-                "type": "n8n-nodes-base.merge",
-                "typeVersion": 3.1,
-                "position": [
-                    440,
-                    100
-                ],
-                "id": "bcc4e8a1-5db6-4755-9f02-bb073b00dd1a",
-                "name": "Merge"
-            },
-            {
-                "parameters": {
-                    "method": "POST",
-                    "url": "https://openrouter.ai/api/v1/chat/completions",
-                    "authentication": "predefinedCredentialType",
-                    "nodeCredentialType": "openRouterApi",
-                    "sendHeaders": true,
-                    "headerParameters": {
-                        "parameters": [
-                            {
-                                "name": "Content-Type",
-                                "value": "application/json"
-                            }
-                        ]
-                    },
-                    "sendBody": true,
-                    "specifyBody": "=json",
-                    "bodyParameters": {
-                        "parameters": [
-                            {}
-                        ]
-                    },
-                    "jsonBody": "={\n  \"model\": \"google/gemini-2.5-pro-exp-03-25:free\",\n  \"temperature\": 0.7,\n  \"messages\": [\n    {\n      \"role\": \"system\",\n      \"content\": \"你是婚禮邀請函產生專家。只生成邀請函的實際內容，不要包含任何使用說明、建議或指導。不要使用方括號標記需要替換的內容。直接使用提供的資訊填入邀請函。不要在回應中提及你是AI或任何元說明。\"\n    },\n    {\n      \"role\": \"user\",\n      \"content\": \"請為以下賓客生成一封完全獨特的婚禮邀請函，不要套用固定模板：\\n\\n新人：{{ $('Merge').item.json.bride_name }} & {{ $('Merge').item.json.groom_name }}\\n收件人：{{ $('Merge').item.json.name }}\\n關係：{{ $('Merge').item.json.relationship }}\\n小故事：{{ $('Merge').item.json.favorite_memory }}\\n婚禮日期：{{ $('Merge').item.json.wedding_date }}\\n星期幾：{{ $('Merge').item.json.week_day }}\\n時間：{{ $('Merge').item.json.time }}\\n地點名稱：{{ $('Merge').item.json.venue_name }}\\n地點地址：{{ $('Merge').item.json.venue_address }}\\n\\n請根據關係和小故事創建真正獨特的內容，可以嘗試不同的開場白、結構、表達方式，讓每封邀請函都獨一無二。可以選擇性地加入溫馨、幽默或感性的元素，以反映賓客與新人的特殊關係。\"\n    }\n  ],\n  \"temperature\": 0.9\n}",
-                    "options": {}
-                },
-                "type": "n8n-nodes-base.httpRequest",
-                "typeVersion": 4.2,
-                "position": [
-                    1100,
-                    200
-                ],
-                "id": "3d088bba-9337-4ffc-b5ad-b1f76f6b6bd7",
-                "name": "HTTP Request",
-                "credentials": {
-                    "openRouterApi": {
-                        "id": "GWbBdrAWpARJgY9C",
-                        "name": "OpenRouter account"
-                    }
+                {
+                  "fieldLabel": "其他留言 Your message"
                 }
+              ]
             },
-            {
-                "parameters": {
-                    "sendTo": "={{$node[\"Merge\"].json.email}} ",
-                    "subject": "=【{{$node[\"Merge\"].json.bride_name}}＆{{$node[\"Merge\"].json.groom_name}}】專屬家宴邀請函 ",
-                    "message": "=<div style=\"font-family: 'Microsoft JhengHei', 'PingFang TC', 'Apple LiGothic Medium', sans-serif; max-width: 600px; margin: 0 auto; line-height: 1.6; color: #333; text-align: center;\">\n  <h2 style=\"color: #e86b6b; margin-bottom: 20px;\">親愛的 {{$node[\"Merge\"].json.name}}：</h2>\n  \n  <div style=\"text-align: left;\">\n    <p style=\"margin: 12px 0; font-size: 16px;\">嘿！我們要結婚了！</p>\n    \n    <p style=\"margin: 12px 0; font-size: 16px;\">是的，就是我們，{{$node[\"Merge\"].json.bride_name}} 和 {{$node[\"Merge\"].json.groom_name}}！</p>\n    \n    <p style=\"margin: 12px 0; font-size: 16px;\">{{$node[\"HTTP Request\"].json.choices[0].message.content}}</p>\n  </div>\n  \n  <div style=\"margin: 25px 0; border-left: 4px solid #e86b6b; padding-left: 15px; text-align: left;\">\n    <h3 style=\"color: #e86b6b; margin-top: 0; margin-bottom: 15px; text-align: center;\">💌【婚禮資訊】</h3>\n    \n    <p style=\"margin: 10px 0; font-size: 16px;\">📅 <strong>日期：</strong>{{$node[\"Merge\"].json.wedding_date}}（星期{{$node[\"Merge\"].json.week_day}}）</p>\n    \n    <p style=\"margin: 10px 0; font-size: 16px;\">🕠 <strong>時間：</strong>{{$node[\"Merge\"].json.time}}</p>\n    \n    <p style=\"margin: 10px 0; font-size: 16px;\">🏛 <strong>地點：</strong>{{$node[\"Merge\"].json.venue_name}}</p>\n    \n    <p style=\"margin: 10px 0; font-size: 16px;\">📍 <strong>地址：</strong>{{$node[\"Merge\"].json.venue_address}}</p>\n  </div>\n  \n  <div style=\"background-color: #f0f7ff; padding: 15px; border-radius: 8px; margin: 25px 0; border-left: 4px solid #5b9bd5; text-align: left;\">\n    <h3 style=\"color: #5b9bd5; text-align: center; margin-top: 0; margin-bottom: 15px;\">🔔【敬請回覆】</h3>\n    \n    <p style=\"margin: 10px 0; font-size: 16px;\">為了方便我們統計人數和安排，請你在 {{$node[\"Merge\"].json.rsvp_deadline}} 前，透過  {{ $('Merge').item.json.email }}告訴我們你是否能來參加，讓我們知道可以期待看到你喔！</p>\n  </div>\n  \n  <div style=\"text-align: left;\">\n    <p style=\"margin: 12px 0; font-size: 16px;\">你的祝福與蒞臨，將是給我們最棒的結婚禮物。</p>\n    \n    <p style=\"margin: 12px 0; font-size: 16px;\">期待在婚禮上見到你，聊聊近況，抱一個！</p>\n    \n    <p style=\"margin: 12px 0; font-size: 16px;\">溫馨的祝福，</p>\n    \n    <p style=\"margin: 12px 0; text-align: right; font-size: 16px;\"><strong>{{$node[\"Merge\"].json.bride_name}} & {{$node[\"Merge\"].json.groom_name}} 敬邀</strong></p>\n  </div>\n</div>",
-                    "options": {}
-                },
-                "type": "n8n-nodes-base.gmail",
-                "typeVersion": 2.1,
-                "position": [
-                    1760,
-                    200
-                ],
-                "id": "b791bb0f-c05b-43e3-8e65-82b58e83badc",
-                "name": "Gmail",
-                "webhookId": "47b6df8e-2422-477b-941e-16ec370ee779",
-                "credentials": {
-                    "gmailOAuth2": {
-                        "id": "3kASMhO8mJHcZQZz",
-                        "name": "Gmail account"
-                    }
+            "options": {
+              "respondWithOptions": {
+                "values": {
+                  "formSubmittedText": "感謝您的回覆！期待在婚禮上見到您。"
                 }
-            },
-            {
-                "parameters": {
-                    "mode": "raw",
-                    "jsonOutput": "={\n  \"bride_name\": \"小美\",\n  \"groom_name\": \"張志明\",\n  \"guest_name\": \"王小明\",\n  \"relation\": \"大學同學\",\n  \"story\": \"一起去日本背包旅行時，迷路卻意外吃到超好吃的拉麵\",\n  \"wedding_date\": \"2025-06-15\",\n  \"week_day\": \"日\",\n  \"time\": \"下午 5:30\",\n  \"venue_name\": \"晶華酒店 3 樓宴會廳\",\n  \"venue_address\": \"台北市中山區中山北路二段39巷3號\",\n  \"rsvp\": \"請回覆 0912-345-678 或 email@example.com\",\n  \"rsvp_deadline\": \"2025-05-31\"\n}\n",
-                    "options": {}
-                },
-                "type": "n8n-nodes-base.set",
-                "typeVersion": 3.4,
-                "position": [
-                    880,
-                    200
-                ],
-                "id": "7efec881-9994-4350-a9e1-e798bc02ad81",
-                "name": "Edit Fields1"
-            },
-            {
-                "parameters": {
-                    "conditions": {
-                        "options": {
-                            "caseSensitive": true,
-                            "leftValue": "",
-                            "typeValidation": "loose",
-                            "version": 2
-                        },
-                        "conditions": [
-                            {
-                                "id": "5b6d6f36-742b-44cb-b6e5-07b133d87024",
-                                "leftValue": "={{$node[\"Merge\"].json.language}}",
-                                "rightValue": "=en",
-                                "operator": {
-                                    "type": "string",
-                                    "operation": "equals"
-                                }
-                            }
-                        ],
-                        "combinator": "and"
-                    },
-                    "looseTypeValidation": true,
-                    "options": {}
-                },
-                "type": "n8n-nodes-base.if",
-                "typeVersion": 2.2,
-                "position": [
-                    660,
-                    100
-                ],
-                "id": "e86c95f5-d563-459d-9699-ffc13a59b27e",
-                "name": "If"
-            },
-            {
-                "parameters": {
-                    "mode": "raw",
-                    "jsonOutput": "={\n  \"role\": \"user\",\n  \"content\": \"Please write a warm and personal wedding invitation for {{ $('Merge').item.json.name }}.\\nBride: {{ $('Merge').item.json.bride_name }}, Groom: {{ $('Merge').item.json.groom_name }}\\nRelationship:{{ $('Merge').item.json.relationship }} \\nStory: {{ $('Merge').item.json.favorite_memory }}\"\n}",
-                    "options": {}
-                },
-                "type": "n8n-nodes-base.set",
-                "typeVersion": 3.4,
-                "position": [
-                    880,
-                    0
-                ],
-                "id": "a17eb278-de58-45eb-a634-384ec4daabe8",
-                "name": "Edit Fields"
-            },
-            {
-                "parameters": {
-                    "method": "POST",
-                    "url": "https://openrouter.ai/api/v1/chat/completions",
-                    "authentication": "predefinedCredentialType",
-                    "nodeCredentialType": "openRouterApi",
-                    "sendHeaders": true,
-                    "headerParameters": {
-                        "parameters": [
-                            {
-                                "name": "Content-Type",
-                                "value": "application/json"
-                            }
-                        ]
-                    },
-                    "sendBody": true,
-                    "specifyBody": "json",
-                    "jsonBody": "={\n  \"model\": \"google/gemini-2.5-pro-exp-03-25:free\",\n  \"messages\": [\n    {\n      \"role\": \"system\",\n      \"content\": \"You are a wedding invitation specialist. Generate only the actual content of the invitation without including any instructions, suggestions, or guidance. Do not use brackets to mark content that needs to be replaced. Directly fill in the invitation with the provided information. Do not mention that you are an AI or include any meta-explanations in your response. For each guest, create a completely unique invitation - don't use a fixed template. Instead, make each letter have its own unique expression, structure, and language style. Use the guest's relationship with the couple and their shared memories to create truly personalized content.\"\n    },\n    {\n      \"role\": \"user\",\n      \"content\": \"Please generate a completely unique wedding invitation letter for the following guest. Do not use any fixed templates.Please write it in English.：\\n\\n新人：{{ $('Merge').item.json.bride_name_en }} &{{ $('Merge').item.json.groom_name_en }}\\n收件人：{{ $('Merge').item.json.name }}\\n關係：{{ $('Merge').item.json.relationship }}\\n小故事：{{ $('Merge').item.json.favorite_memory }}\\n婚禮日期：{{ $('Merge').item.json.wedding_date_en }}\\n星期幾：{{ $('Merge').item.json.week_day_en }}\\n時間：{{ $('Merge').item.json.time_en }}\\n地點名稱：{{ $('Merge').item.json.venue_name_en }}\\n地點地址：{{ $('Merge').item.json.venue_address_en }}\\n\\nCreate truly unique content based on the relationship and shared stories. Try different openings, structures, and expressions to make each invitation one-of-a-kind. Feel free to incorporate warm, humorous, or emotional elements that reflect the special relationship between the guest and the couple.\"\n    }\n  ],\n  \"temperature\": 0.9\n}",
-                    "options": {}
-                },
-                "type": "n8n-nodes-base.httpRequest",
-                "typeVersion": 4.2,
-                "position": [
-                    1100,
-                    0
-                ],
-                "id": "d658bf4a-c2f5-44ce-874d-d99328e85c35",
-                "name": "HTTP Request1",
-                "credentials": {
-                    "openRouterApi": {
-                        "id": "GWbBdrAWpARJgY9C",
-                        "name": "OpenRouter account"
-                    }
-                }
-            },
-            {
-                "parameters": {
-                    "sendTo": "ss11144250@gmail.com",
-                    "subject": "=【{{ $('Merge').item.json.bride_name_en }}＆{{ $('Merge').item.json.groom_name_en }}】Exclusive Family Banquet Invitation ",
-                    "message": "=<div style=\"font-family: 'Arial', 'Helvetica', sans-serif; max-width: 600px; margin: 0 auto; line-height: 1.6; color: #333; text-align: center;\">\n  <h2 style=\"color: #e86b6b; margin-bottom: 20px;\">Dear {{$node[\"Merge\"].json.name}}:</h2>\n  \n  <div style=\"text-align: left;\">\n    <p style=\"margin: 12px 0; font-size: 16px;\">Hey! We're getting married!</p>\n    \n    <p style=\"margin: 12px 0; font-size: 16px;\">Yes, it's us, {{$node[\"Merge\"].json.bride_name_en}} and {{$node[\"Merge\"].json.groom_name_en}}!</p>\n    \n    <p style=\"margin: 12px 0; font-size: 16px;\">{{$node[\"HTTP Request1\"].json.choices[0].message.content}}</p>\n  </div>\n  \n  <div style=\"margin: 25px 0; border-left: 4px solid #e86b6b; padding-left: 15px; text-align: left;\">\n    <h3 style=\"color: #e86b6b; margin-top: 0; margin-bottom: 15px; text-align: center;\">💌【Wedding Details】</h3>\n    \n    <p style=\"margin: 10px 0; font-size: 16px;\">📅 <strong>Date:</strong> {{$node[\"Merge\"].json.wedding_date_en}} ({{$node[\"Merge\"].json.week_day_en}})</p>\n    \n    <p style=\"margin: 10px 0; font-size: 16px;\">🕠 <strong>Time:</strong> {{$node[\"Merge\"].json.time_en}}</p>\n    \n    <p style=\"margin: 10px 0; font-size: 16px;\">🏛 <strong>Venue:</strong> {{$node[\"Merge\"].json.venue_name_en}}</p>\n    \n    <p style=\"margin: 10px 0; font-size: 16px;\">📍 <strong>Address:</strong> {{$node[\"Merge\"].json.venue_address_en}}</p>\n  </div>\n  \n  <div style=\"background-color: #f0f7ff; padding: 15px; border-radius: 8px; margin: 25px 0; border-left: 4px solid #5b9bd5; text-align: left;\">\n    <h3 style=\"color: #5b9bd5; text-align: center; margin-top: 0; margin-bottom: 15px;\">🔔【Please RSVP】</h3>\n    \n    <p style=\"margin: 10px 0; font-size: 16px;\">To help us with planning, please let us know if you can attend by {{$node[\"Merge\"].json.rsvp_deadline_en}} via {{ $('Merge').item.json.email }}. We're looking forward to seeing you there!</p>\n  </div>\n  \n  <div style=\"text-align: left;\">\n    <p style=\"margin: 12px 0; font-size: 16px;\">Your blessing and presence would be the best wedding gift we could receive.</p>\n    \n    <p style=\"margin: 12px 0; font-size: 16px;\">We can't wait to see you at the wedding, catch up, and share a hug!</p>\n    \n    <p style=\"margin: 12px 0; font-size: 16px;\">With warm wishes,</p>\n    \n    <p style=\"margin: 12px 0; text-align: right; font-size: 16px;\"><strong>{{$node[\"Merge\"].json.bride_name_en}} & {{$node[\"Merge\"].json.groom_name_en}}</strong></p>\n  </div>\n</div>",
-                    "options": {}
-                },
-                "type": "n8n-nodes-base.gmail",
-                "typeVersion": 2.1,
-                "position": [
-                    1760,
-                    0
-                ],
-                "id": "e63f8fd4-3ec2-43da-944d-26fdcc9ef078",
-                "name": "Gmail1",
-                "webhookId": "5ca0d0db-e2e1-4158-a98e-907f3bf71298",
-                "credentials": {
-                    "gmailOAuth2": {
-                        "id": "3kASMhO8mJHcZQZz",
-                        "name": "Gmail account"
-                    }
-                }
-            },
-            {
-                "parameters": {
-                    "assignments": {
-                        "assignments": [
-                            {
-                                "id": "05d01cdc-9369-4164-a04a-41e1dc6d38e9",
-                                "name": "processedContent",
-                                "value": "={{$node[\"HTTP Request1\"].json.choices[0].message.content}}",
-                                "type": "string"
-                            }
-                        ]
-                    },
-                    "includeOtherFields": true,
-                    "options": {}
-                },
-                "type": "n8n-nodes-base.set",
-                "typeVersion": 3.4,
-                "position": [
-                    1540,
-                    0
-                ],
-                "id": "27820f38-beb1-4310-b14a-d3775fa1c532",
-                "name": "Edit Fields2"
-            },
-            {
-                "parameters": {
-                    "assignments": {
-                        "assignments": [
-                            {
-                                "id": "fe2b31fe-2f4f-4aae-b409-119bb37348cd",
-                                "name": "processedContent",
-                                "value": "={{$node[\"HTTP Request\"].json.choices[0].message.content}}",
-                                "type": "string"
-                            }
-                        ]
-                    },
-                    "options": {}
-                },
-                "type": "n8n-nodes-base.set",
-                "typeVersion": 3.4,
-                "position": [
-                    1540,
-                    200
-                ],
-                "id": "70ffb4a8-fae6-4c79-9204-d818258de580",
-                "name": "Edit Fields3"
-            },
-            {
-                "parameters": {
-                    "amount": 10
-                },
-                "type": "n8n-nodes-base.wait",
-                "typeVersion": 1.1,
-                "position": [
-                    1320,
-                    0
-                ],
-                "id": "f74824eb-dfa7-4f1f-95a6-6ff9554140f2",
-                "name": "Wait",
-                "webhookId": "dbd679cd-cd47-4fe6-8f1b-d7a3db4f341d"
-            },
-            {
-                "parameters": {
-                    "amount": 15
-                },
-                "type": "n8n-nodes-base.wait",
-                "typeVersion": 1.1,
-                "position": [
-                    1320,
-                    200
-                ],
-                "id": "4cb19658-7528-4e7a-87c1-1f9f20d31e10",
-                "name": "Wait1",
-                "webhookId": "dbd679cd-cd47-4fe6-8f1b-d7a3db4f341d"
+              },
+              "customCss": "<script>\ndocument.addEventListener('DOMContentLoaded', function() {\n  // 從URL參數獲取資訊\n  const urlParams = new URLSearchParams(window.location.search);\n  \n  // 取得所有輸入欄位\n  const inputs = document.querySelectorAll('input, select, textarea');\n  \n  // 遍歷所有欄位，檢查是否有對應的URL參數\n  inputs.forEach(input => {\n    const paramName = input.name || input.id;\n    if (urlParams.has(paramName)) {\n      input.value = urlParams.get(paramName);\n    }\n  });\n});\n</script>"
             }
-        ],
-        "connections": {
-            "Schedule Trigger": {
-                "main": [
-                    [
-                        {
-                            "node": "Read/Write Files from Disk",
-                            "type": "main",
-                            "index": 0
-                        },
-                        {
-                            "node": "Read/Write Files from Disk1",
-                            "type": "main",
-                            "index": 0
-                        }
-                    ]
-                ]
-            },
-            "Read/Write Files from Disk": {
-                "main": [
-                    [
-                        {
-                            "node": "Extract from File",
-                            "type": "main",
-                            "index": 0
-                        }
-                    ]
-                ]
-            },
-            "Extract from File": {
-                "main": [
-                    [
-                        {
-                            "node": "Merge",
-                            "type": "main",
-                            "index": 0
-                        }
-                    ]
-                ]
-            },
-            "Read/Write Files from Disk1": {
-                "main": [
-                    [
-                        {
-                            "node": "Extract from File1",
-                            "type": "main",
-                            "index": 0
-                        }
-                    ]
-                ]
-            },
-            "Extract from File1": {
-                "main": [
-                    [
-                        {
-                            "node": "Merge",
-                            "type": "main",
-                            "index": 1
-                        }
-                    ]
-                ]
-            },
-            "Merge": {
-                "main": [
-                    [
-                        {
-                            "node": "If",
-                            "type": "main",
-                            "index": 0
-                        }
-                    ]
-                ]
-            },
-            "HTTP Request": {
-                "main": [
-                    [
-                        {
-                            "node": "Wait1",
-                            "type": "main",
-                            "index": 0
-                        }
-                    ]
-                ]
-            },
-            "Edit Fields1": {
-                "main": [
-                    [
-                        {
-                            "node": "HTTP Request",
-                            "type": "main",
-                            "index": 0
-                        }
-                    ]
-                ]
-            },
-            "If": {
-                "main": [
-                    [
-                        {
-                            "node": "Edit Fields",
-                            "type": "main",
-                            "index": 0
-                        }
-                    ],
-                    [
-                        {
-                            "node": "Edit Fields1",
-                            "type": "main",
-                            "index": 0
-                        }
-                    ]
-                ]
-            },
-            "Edit Fields": {
-                "main": [
-                    [
-                        {
-                            "node": "HTTP Request1",
-                            "type": "main",
-                            "index": 0
-                        }
-                    ]
-                ]
-            },
-            "HTTP Request1": {
-                "main": [
-                    [
-                        {
-                            "node": "Wait",
-                            "type": "main",
-                            "index": 0
-                        }
-                    ]
-                ]
-            },
-            "Edit Fields2": {
-                "main": [
-                    [
-                        {
-                            "node": "Gmail1",
-                            "type": "main",
-                            "index": 0
-                        }
-                    ]
-                ]
-            },
-            "Edit Fields3": {
-                "main": [
-                    [
-                        {
-                            "node": "Gmail",
-                            "type": "main",
-                            "index": 0
-                        }
-                    ]
-                ]
-            },
-            "Gmail": {
-                "main": [
-                    []
-                ]
-            },
-            "Wait": {
-                "main": [
-                    [
-                        {
-                            "node": "Edit Fields2",
-                            "type": "main",
-                            "index": 0
-                        }
-                    ]
-                ]
-            },
-            "Wait1": {
-                "main": [
-                    [
-                        {
-                            "node": "Edit Fields3",
-                            "type": "main",
-                            "index": 0
-                        }
-                    ]
-                ]
-            }
+          },
+          "type": "n8n-nodes-base.formTrigger",
+          "typeVersion": 2.2,
+          "position": [
+            -220,
+            560
+          ],
+          "id": "68162d95-12de-488b-8899-d5e6564a0a47",
+          "name": "接收RSVP",
+          "webhookId": "cf6629ba-a521-4f29-bf3a-c768951c1236"
         },
-        "settings": {
-            "executionOrder": "v1"
-        },
-        "staticData": null,
-        "meta": {
-            "templateCredsSetupCompleted": true
-        },
-        "pinData": {},
-        "versionId": "c00d6701-8a3b-4279-bc04-0b3b84a59ecf",
-        "triggerCount": 0,
-        "tags": []
-    },
-    {
-        "createdAt": "2025-04-23T12:15:15.435Z",
-        "updatedAt": "2025-04-23T16:29:18.000Z",
-        "id": "vY0oyANA7cFfn3Yf",
-        "name": "RSVP",
-        "active": true,
-        "nodes": [
-            {
-                "parameters": {
-                    "formTitle": "婚禮回覆",
-                    "formDescription": "此表單用來填寫婚禮回覆\n",
-                    "formFields": {
-                        "values": [
-                            {
-                                "fieldLabel": "姓名",
-                                "requiredField": true
-                            },
-                            {
-                                "fieldLabel": "電子郵件",
-                                "fieldType": "email",
-                                "requiredField": true
-                            },
-                            {
-                                "fieldLabel": "是否出席",
-                                "fieldType": "dropdown",
-                                "fieldOptions": {
-                                    "values": [
-                                        {
-                                            "option": "會出席"
-                                        },
-                                        {
-                                            "option": "無法出席"
-                                        }
-                                    ]
-                                },
-                                "requiredField": true
-                            },
-                            {
-                                "fieldLabel": "出席人數",
-                                "requiredField": true
-                            },
-                            {
-                                "fieldLabel": "飲食需求"
-                            },
-                            {
-                                "fieldLabel": "其他留言"
-                            }
-                        ]
-                    },
-                    "options": {
-                        "respondWithOptions": {
-                            "values": {
-                                "formSubmittedText": "感謝您的回覆！期待在婚禮上見到您。"
-                            }
-                        },
-                        "customCss": "<script>\ndocument.addEventListener('DOMContentLoaded', function() {\n  // 從URL參數獲取資訊\n  const urlParams = new URLSearchParams(window.location.search);\n  \n  // 取得所有輸入欄位\n  const inputs = document.querySelectorAll('input, select, textarea');\n  \n  // 遍歷所有欄位，檢查是否有對應的URL參數\n  inputs.forEach(input => {\n    const paramName = input.name || input.id;\n    if (urlParams.has(paramName)) {\n      input.value = urlParams.get(paramName);\n    }\n  });\n});\n</script>"
-                    }
+        {
+          "parameters": {
+            "operation": "appendOrUpdate",
+            "documentId": {
+              "__rl": true,
+              "value": "15pQrr-RMCiJqkmvkIxW_GiPbykrQwZ50sNaw0CiPO-w",
+              "mode": "list",
+              "cachedResultName": "RSVP表單",
+              "cachedResultUrl": "https://docs.google.com/spreadsheets/d/15pQrr-RMCiJqkmvkIxW_GiPbykrQwZ50sNaw0CiPO-w/edit?usp=drivesdk"
+            },
+            "sheetName": {
+              "__rl": true,
+              "value": 1178749637,
+              "mode": "list",
+              "cachedResultName": "RSVP回覆",
+              "cachedResultUrl": "https://docs.google.com/spreadsheets/d/15pQrr-RMCiJqkmvkIxW_GiPbykrQwZ50sNaw0CiPO-w/edit#gid=1178749637"
+            },
+            "columns": {
+              "mappingMode": "defineBelow",
+              "value": {
+                "電子郵件": "={{ $json['電子郵件 Email'] }}",
+                "姓名": "={{ $json['姓名 Name'] }}",
+                "是否出席": "={{ $json['是否出席 Will you attend?'] }}",
+                "飲食需求": "={{ $json['飲食需求 Dietary restrictions'] }}",
+                "其他留言": "={{ $json['其他留言 Your message'] }}",
+                "出席人數": "={{ $json['出席人數 Number of guests'] }}"
+              },
+              "matchingColumns": [
+                "電子郵件"
+              ],
+              "schema": [
+                {
+                  "id": "姓名",
+                  "displayName": "姓名",
+                  "required": false,
+                  "defaultMatch": false,
+                  "display": true,
+                  "type": "string",
+                  "canBeUsedToMatch": true
                 },
-                "type": "n8n-nodes-base.formTrigger",
-                "typeVersion": 2.2,
-                "position": [
-                    80,
-                    80
-                ],
-                "id": "7d98a3fd-69a9-4161-99bd-aa4844109bc7",
-                "name": "On form submission1",
-                "webhookId": "cf6629ba-a521-4f29-bf3a-c768951c1236"
-            },
-            {
-                "parameters": {
-                    "operation": "appendOrUpdate",
-                    "documentId": {
-                        "__rl": true,
-                        "value": "15pQrr-RMCiJqkmvkIxW_GiPbykrQwZ50sNaw0CiPO-w",
-                        "mode": "list",
-                        "cachedResultName": "RSVP表單",
-                        "cachedResultUrl": "https://docs.google.com/spreadsheets/d/15pQrr-RMCiJqkmvkIxW_GiPbykrQwZ50sNaw0CiPO-w/edit?usp=drivesdk"
-                    },
-                    "sheetName": {
-                        "__rl": true,
-                        "value": 1178749637,
-                        "mode": "list",
-                        "cachedResultName": "RSVP回覆",
-                        "cachedResultUrl": "https://docs.google.com/spreadsheets/d/15pQrr-RMCiJqkmvkIxW_GiPbykrQwZ50sNaw0CiPO-w/edit#gid=1178749637"
-                    },
-                    "columns": {
-                        "mappingMode": "defineBelow",
-                        "value": {
-                            "電子郵件": "={{ $json['電子郵件'] }}",
-                            "姓名": "={{ $json['姓名'] }}",
-                            "是否出席": "={{ $json['是否出席'] }}",
-                            "出席人數": "={{ $json['出席人數'] }}",
-                            "飲食需求": "={{ $json['飲食需求'] }}",
-                            "其他留言": "={{ $json['其他留言'] }}"
-                        },
-                        "matchingColumns": [
-                            "電子郵件"
-                        ],
-                        "schema": [
-                            {
-                                "id": "姓名",
-                                "displayName": "姓名",
-                                "required": false,
-                                "defaultMatch": false,
-                                "display": true,
-                                "type": "string",
-                                "canBeUsedToMatch": true
-                            },
-                            {
-                                "id": "電子郵件",
-                                "displayName": "電子郵件",
-                                "required": false,
-                                "defaultMatch": false,
-                                "display": true,
-                                "type": "string",
-                                "canBeUsedToMatch": true,
-                                "removed": false
-                            },
-                            {
-                                "id": "是否出席",
-                                "displayName": "是否出席",
-                                "required": false,
-                                "defaultMatch": false,
-                                "display": true,
-                                "type": "string",
-                                "canBeUsedToMatch": true
-                            },
-                            {
-                                "id": "出席人數",
-                                "displayName": "出席人數",
-                                "required": false,
-                                "defaultMatch": false,
-                                "display": true,
-                                "type": "string",
-                                "canBeUsedToMatch": true,
-                                "removed": false
-                            },
-                            {
-                                "id": "飲食需求",
-                                "displayName": "飲食需求",
-                                "required": false,
-                                "defaultMatch": false,
-                                "display": true,
-                                "type": "string",
-                                "canBeUsedToMatch": true
-                            },
-                            {
-                                "id": "其他留言",
-                                "displayName": "其他留言",
-                                "required": false,
-                                "defaultMatch": false,
-                                "display": true,
-                                "type": "string",
-                                "canBeUsedToMatch": true
-                            }
-                        ],
-                        "attemptToConvertTypes": false,
-                        "convertFieldsToString": false
-                    },
-                    "options": {}
+                {
+                  "id": "電子郵件",
+                  "displayName": "電子郵件",
+                  "required": false,
+                  "defaultMatch": false,
+                  "display": true,
+                  "type": "string",
+                  "canBeUsedToMatch": true,
+                  "removed": false
                 },
-                "type": "n8n-nodes-base.googleSheets",
-                "typeVersion": 4.5,
-                "position": [
-                    300,
-                    80
-                ],
-                "id": "5c6ce8ae-2093-4b67-8ad8-f5700e316e00",
-                "name": "Google Sheets",
-                "credentials": {
-                    "googleSheetsOAuth2Api": {
-                        "id": "wiVfrHFiGt8FaPBg",
-                        "name": "Google Sheets account"
-                    }
+                {
+                  "id": "是否出席",
+                  "displayName": "是否出席",
+                  "required": false,
+                  "defaultMatch": false,
+                  "display": true,
+                  "type": "string",
+                  "canBeUsedToMatch": true
+                },
+                {
+                  "id": "出席人數",
+                  "displayName": "出席人數",
+                  "required": false,
+                  "defaultMatch": false,
+                  "display": true,
+                  "type": "string",
+                  "canBeUsedToMatch": true,
+                  "removed": false
+                },
+                {
+                  "id": "飲食需求",
+                  "displayName": "飲食需求",
+                  "required": false,
+                  "defaultMatch": false,
+                  "display": true,
+                  "type": "string",
+                  "canBeUsedToMatch": true
+                },
+                {
+                  "id": "其他留言",
+                  "displayName": "其他留言",
+                  "required": false,
+                  "defaultMatch": false,
+                  "display": true,
+                  "type": "string",
+                  "canBeUsedToMatch": true
                 }
+              ],
+              "attemptToConvertTypes": false,
+              "convertFieldsToString": false
             },
-            {
-                "parameters": {
-                    "sendTo": "ss11144250@gmail.com",
-                    "subject": "RSVP表單回覆",
-                    "message": "=<div style=\"font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;\">\n  <h2>感謝您的回覆！</h2>\n  \n  <p>親愛的 {{ $('On form submission1').item.json['姓名'] }}：</p>\n  \n  <p>我們已收到您的婚禮出席確認。以下是您提供的資訊：</p>\n  \n  <ul>\n    <li><strong>出席狀態：</strong>{{ $('On form submission1').item.json['是否出席'] }}</li>\n    <li><strong>出席人數：</strong>{{ $('On form submission1').item.json['出席人數'] }}</li>\n    <li><strong>飲食需求：</strong>{{ $('On form submission1').item.json['飲食需求'] }}</li>\n    <li><strong>其他留言：</strong>{{ $('On form submission1').item.json['其他留言'] }}</li>\n  </ul>\n  \n  <p>若您需要更新任何資訊，隨時可以再次填寫表單。</p>\n  \n  <p>期待在婚禮上與您相見！</p>\n  \n  <p>新人敬上<br>\n  林小玉 和 張志明</p>\n</div>",
-                    "options": {}
-                },
-                "type": "n8n-nodes-base.gmail",
-                "typeVersion": 2.1,
-                "position": [
-                    520,
-                    80
-                ],
-                "id": "da984438-d278-47c3-b981-86bd35c1d613",
-                "name": "Gmail",
-                "webhookId": "c29ee53c-7256-4bf2-99ae-ea5ed0b0cdcb",
-                "credentials": {
-                    "gmailOAuth2": {
-                        "id": "3kASMhO8mJHcZQZz",
-                        "name": "Gmail account"
-                    }
-                }
+            "options": {}
+          },
+          "type": "n8n-nodes-base.googleSheets",
+          "typeVersion": 4.5,
+          "position": [
+            0,
+            560
+          ],
+          "id": "634bd679-704c-45e4-b204-832d97622abf",
+          "name": "試算表更新",
+          "credentials": {
+            "googleSheetsOAuth2Api": {
+              "id": "SIpzwhBSKnQqCsPe",
+              "name": "Google Sheets account"
             }
-        ],
-        "connections": {
-            "On form submission1": {
-                "main": [
-                    [
-                        {
-                            "node": "Google Sheets",
-                            "type": "main",
-                            "index": 0
-                        }
-                    ]
-                ]
-            },
-            "Google Sheets": {
-                "main": [
-                    [
-                        {
-                            "node": "Gmail",
-                            "type": "main",
-                            "index": 0
-                        }
-                    ]
-                ]
+          }
+        },
+        {
+          "parameters": {
+            "sendTo": "=ss11144250@gmail.com",
+            "subject": "RSVP表單回覆 Confirmation",
+            "message": "=<div style=\"font-family: 'Arial', sans-serif; max-width:600px; margin:0 auto; background-color:#f9f9f9; border:1px solid #e0e0e0; border-radius:8px; padding:24px; color:#333;\">\n  <!-- 標題 Header -->\n  <h2 style=\"margin-top:0; color:#2c3e50; font-size:24px; text-align:center;\">\n    感謝您的回覆！<br>\n    <span style=\"font-size:16px; color:#7f8c8d;\">Thank you for your response!</span>\n  </h2>\n\n  <!-- 稱呼 Greeting -->\n  <p style=\"font-size:16px; line-height:1.5;\">\n    親愛的 {{ $json['姓名'] }}：<br>\n    <em style=\"color:#7f8c8d;\">Dear {{ $json['姓名'] }},</em>\n  </p>\n\n  <!-- 正文 Body -->\n  <p style=\"font-size:16px; line-height:1.6;\">\n    我們已收到您的婚禮出席確認，以下是您提供的資訊：<br>\n    <em style=\"color:#7f8c8d;\">We have received your wedding RSVP. Here is the information you submitted:</em>\n  </p>\n\n  <!-- 資訊清單 Details List -->\n  <ul style=\"font-size:16px; line-height:1.6; padding-left:20px;\">\n    <li>\n      <strong>出席狀態 (Attendance Status)：</strong>\n      <br>\n      <em style=\"color:#7f8c8d;\">{{ $json['是否出席'] }}</em>\n    </li>\n    <li>\n      <strong>出席人數 (Number of Guests)：</strong>\n      <br>\n      <em style=\"color:#7f8c8d;\">{{ $json['出席人數'] }}</em>\n    </li>\n    <li>\n      <strong>飲食需求 (Dietary Requirements)：</strong>\n      <br>\n      <em style=\"color:#7f8c8d;\">{{ $json['飲食需求'] || \"無 None\" }}</em>\n    </li>\n    <li>\n      <strong>其他留言 (Additional Comments)：</strong>\n      <br>\n      <em style=\"color:#7f8c8d;\">{{ $json['其他留言'] || \"無 None\" }}</em>\n    </li>\n  </ul>\n\n  <!-- 補充說明 Note -->\n  <p style=\"font-size:16px; line-height:1.6;\">\n    若您需要更新任何資訊，隨時可以再次填寫表單。<br>\n    <em style=\"color:#7f8c8d;\">If you need to update any details, please feel free to submit the form again.</em>\n  </p>\n\n  <!-- 結尾 Closing -->\n  <p style=\"font-size:16px; line-height:1.6;\">\n    期待在婚禮上與您相見！<br>\n    <em style=\"color:#7f8c8d;\">We look forward to celebrating with you!</em>\n  </p>\n\n  <!-- 簽名 Signature -->\n  <p style=\"font-size:16px; line-height:1.6; margin-bottom:0;\">\n    新人敬上<br>\n    林小玉 和 張志明<br>\n    <em style=\"color:#7f8c8d;\">With love,<br>\n    Lin Xiaoyu &amp; Chang Zhiming</em>\n  </p>\n</div>\n",
+            "options": {}
+          },
+          "type": "n8n-nodes-base.gmail",
+          "typeVersion": 2.1,
+          "position": [
+            200,
+            560
+          ],
+          "id": "b31dcfc6-b39d-4314-941d-3c9189e5d331",
+          "name": "RSVP信件寄送",
+          "webhookId": "c29ee53c-7256-4bf2-99ae-ea5ed0b0cdcb",
+          "credentials": {
+            "gmailOAuth2": {
+              "id": "nxjIgHlt8ajppZs0",
+              "name": "Gmail account"
             }
+          }
         },
-        "settings": {
-            "executionOrder": "v1"
+        {
+          "parameters": {},
+          "type": "n8n-nodes-base.manualTrigger",
+          "typeVersion": 1,
+          "position": [
+            -220,
+            100
+          ],
+          "id": "c6f71522-79ab-408f-9340-834a5c36e0f3",
+          "name": "When clicking ‘Test workflow’"
         },
-        "staticData": {
-            "node:On form submission1": {
-                "電子郵件": "ss11144250@gmail.com",
-                "姓名": "Michael Johnson"
-            }
+        {
+          "parameters": {},
+          "type": "n8n-nodes-base.noOp",
+          "typeVersion": 1,
+          "position": [
+            1920,
+            100
+          ],
+          "id": "74917e45-4caa-45aa-8547-6ca2e240f097",
+          "name": "No Operation, do nothing1"
+        }
+      ],
+      "connections": {
+        "讀取新人資料": {
+          "main": [
+            [
+              {
+                "node": "讀取變數",
+                "type": "main",
+                "index": 0
+              }
+            ]
+          ]
         },
-        "meta": {
-            "templateCredsSetupCompleted": true
+        "讀取賓客資料": {
+          "main": [
+            [
+              {
+                "node": "讀取變數1",
+                "type": "main",
+                "index": 0
+              }
+            ]
+          ]
         },
-        "pinData": {},
-        "versionId": "fae0f606-1745-4653-aa0f-b1ff56f476ad",
-        "triggerCount": 1,
-        "tags": []
+        "讀取變數": {
+          "main": [
+            [
+              {
+                "node": "合併資料流",
+                "type": "main",
+                "index": 0
+              }
+            ]
+          ]
+        },
+        "讀取變數1": {
+          "main": [
+            [
+              {
+                "node": "合併資料流",
+                "type": "main",
+                "index": 1
+              }
+            ]
+          ]
+        },
+        "合併資料流": {
+          "main": [
+            [
+              {
+                "node": "中英文判斷",
+                "type": "main",
+                "index": 0
+              }
+            ]
+          ]
+        },
+        "中英文判斷": {
+          "main": [
+            [
+              {
+                "node": "提示撰寫",
+                "type": "main",
+                "index": 0
+              }
+            ],
+            [
+              {
+                "node": "提示撰寫1",
+                "type": "main",
+                "index": 0
+              }
+            ]
+          ]
+        },
+        "提示撰寫": {
+          "main": [
+            [
+              {
+                "node": "英文內容生成",
+                "type": "main",
+                "index": 0
+              }
+            ]
+          ]
+        },
+        "提示撰寫1": {
+          "main": [
+            [
+              {
+                "node": "中文內容生成",
+                "type": "main",
+                "index": 0
+              }
+            ]
+          ]
+        },
+        "英文內容生成": {
+          "main": [
+            [
+              {
+                "node": "等待",
+                "type": "main",
+                "index": 0
+              }
+            ]
+          ]
+        },
+        "中文內容生成": {
+          "main": [
+            [
+              {
+                "node": "等待1",
+                "type": "main",
+                "index": 0
+              }
+            ]
+          ]
+        },
+        "等待": {
+          "main": [
+            [
+              {
+                "node": "變數整理",
+                "type": "main",
+                "index": 0
+              }
+            ]
+          ]
+        },
+        "等待1": {
+          "main": [
+            [
+              {
+                "node": "變數整理1",
+                "type": "main",
+                "index": 0
+              }
+            ]
+          ]
+        },
+        "變數整理": {
+          "main": [
+            [
+              {
+                "node": "信件寄送",
+                "type": "main",
+                "index": 0
+              }
+            ]
+          ]
+        },
+        "變數整理1": {
+          "main": [
+            [
+              {
+                "node": "信件寄送1",
+                "type": "main",
+                "index": 0
+              }
+            ]
+          ]
+        },
+        "信件寄送": {
+          "main": [
+            [
+              {
+                "node": "No Operation, do nothing1",
+                "type": "main",
+                "index": 0
+              }
+            ]
+          ]
+        },
+        "信件寄送1": {
+          "main": [
+            [
+              {
+                "node": "No Operation, do nothing1",
+                "type": "main",
+                "index": 0
+              }
+            ]
+          ]
+        },
+        "接收RSVP": {
+          "main": [
+            [
+              {
+                "node": "試算表更新",
+                "type": "main",
+                "index": 0
+              }
+            ]
+          ]
+        },
+        "試算表更新": {
+          "main": [
+            [
+              {
+                "node": "RSVP信件寄送",
+                "type": "main",
+                "index": 0
+              }
+            ]
+          ]
+        },
+        "RSVP信件寄送": {
+          "main": [
+            [
+              {
+                "node": "No Operation, do nothing",
+                "type": "main",
+                "index": 0
+              }
+            ]
+          ]
+        },
+        "When clicking ‘Test workflow’": {
+          "main": [
+            [
+              {
+                "node": "讀取新人資料",
+                "type": "main",
+                "index": 0
+              },
+              {
+                "node": "讀取賓客資料",
+                "type": "main",
+                "index": 0
+              }
+            ]
+          ]
+        }
+      },
+      "settings": {
+        "executionOrder": "v1"
+      },
+      "staticData": {
+        "node:接收RSVP": {
+          "電子郵件": "ss11144250@gmail.com",
+          "姓名": "Michael Johnson",
+          "電子郵件 Email": "ss11144250@gmail.com",
+          "姓名 Name": "王淑媛"
+        }
+      },
+      "meta": {
+        "templateCredsSetupCompleted": true
+      },
+      "pinData": {},
+      "versionId": "71c67092-b6df-4b66-8061-165f9073e60a",
+      "triggerCount": 1,
+      "tags": []
     }
-]
+  ]
