@@ -1,5 +1,6 @@
-name,email,relationship,favorite_memory,guest_characteristics,life_experience,family_status,blessing,language
-王大明,ss11144250@gmail.com,大學同學,"一起去日本背包旅行時，迷路卻意外吃到超好吃的拉麵，還在旅館玩桌遊，玩得不亦樂乎。","幽默、熱愛冒險、喜歡嘗試新事物","曾經給過我旅行和人生的重大建議","未婚","祝福你們的婚姻永遠充滿愛與笑聲！",zh
-陳秀麗,ss11144250@gmail.com,表姊,"小時候一起在鄉下抓螢火蟲，那時候她總是說'看，這裡有魔法'.","溫柔、喜愛大自然、總能帶來安心的感覺","看著你一步步成長，期待見證你的婚禮","已婚，擁有兩個孩子","祝你們永遠幸福美滿！",zh
-李家豪,ss11144250@gmail.com,大學室友,"考上碩士前半夜一起加開最後一門考，總是能互相加油鼓勵，最後我們都成功了！","堅持、喜歡挑戰、總是給予正能量","曾經和我一起面對大學最艱難的一課","已婚，兩個孩子","祝你們的婚姻像這段回憶一樣永遠充滿挑戰與成就！",zh
-"Michael Johnson","ss11144250@gmail.com","College Friend","We once stayed up all night before finals quizzing each other and laughing over snacks. We both passed and celebrated with pizza!","Supportive witty always up for a deep conversation","Helped me through a tough breakup and reminded me to always believe in myself","Married one daughter","Wishing you a marriage filled with strength laughter and everlasting friendship!",en
+name,email,relationship,favorite_memory,guest_characteristics,life_experience,family_status,blessing,language,age
+王大明,ss11144250@gmail.com,大學同學,"一起去日本背包旅行時，迷路卻意外吃到超好吃的拉麵，還在旅館玩桌遊，玩得不亦樂乎。","幽默、熱愛冒險、喜歡嘗試新事物","曾經給過我旅行和人生的重大建議","未婚","祝福你們的婚姻永遠充滿愛與笑聲！",zh,25
+吳柏慶,ss11144250@gmail.com,表姊,"小時候一起在鄉下抓螢火蟲，那時候她總是說'看，這裡有魔法'.","溫柔、喜愛大自然、總能帶來安心的感覺","看著你一步步成長，期待見證你的婚禮","已婚，擁有兩個孩子","祝你們永遠幸福美滿！",zh,30
+潘沛伶,panpeiling463@gmail.com,大學室友,"考上碩士前半夜一起加開最後一門考，總是能互相加油鼓勵，最後我們都成功了！","堅持、喜歡挑戰、總是給予正能量","曾經和我一起面對大學最艱難的一課","已婚，兩個孩子","祝你們的婚姻像這段回憶一樣永遠充滿挑戰與成就！",zh,22
+"Michael Johnson","ss11144250@gmail.com","College Friend","We once stayed up all night before finals quizzing each other and laughing over snacks. We both passed and celebrated with pizza!","Supportive witty always up for a deep conversation","Helped me through a tough breakup and reminded me to always believe in myself","Married one daughter","Wishing you a marriage filled with strength laughter and everlasting friendship!",en,40
+王淑媛,ss11144250@gmail.com,阿嬤,小時候她帶我去市場買糖果,慈祥、有耐心,經歷過戰後時代的艱辛歲月,有三個兒子與五個孫子,身體健康、笑口常開,zh,70
